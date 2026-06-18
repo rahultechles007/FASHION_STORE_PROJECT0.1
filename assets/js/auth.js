@@ -1,72 +1,74 @@
+console.log("Velora Auth Loaded");
 
-console.log("AUTH JS LOADED");
-
-// TOAST (FIXED - NO ERROR EVEN IF MISSING HTML)
-function showToast(message) {
-
-    let toast = document.getElementById("toast");
-
-    if (!toast) {
-        alert(message); // fallback
-        return;
-    }
-
-    toast.innerText = message;
-    toast.classList.remove("hidden");
-
-    setTimeout(() => {
-        toast.classList.add("hidden");
-    }, 2000);
-}
-
-
-// =====  REGISTER 
+// ======================
+// REGISTER
+// ======================
 
 function reguser() {
 
-    let name =
-        document.getElementById("registerName").value.trim();
+    const name =
+        document.getElementById("registerName")
+        .value.trim();
 
-    let email =
-        document.getElementById("registerEmail").value.trim();
+    const email =
+        document.getElementById("registerEmail")
+        .value.trim()
+        .toLowerCase();
 
-    let password =
-        document.getElementById("registerPassword").value;
+    const password =
+        document.getElementById("registerPassword")
+        .value;
 
-    let confirmPassword =
-        document.getElementById("confirmPassword").value;
+    const confirmPassword =
+        document.getElementById("confirmPassword")
+        .value;
 
-    if (!name || !email || !password || !confirmPassword) {
-
+    if (
+        !name ||
+        !email ||
+        !password ||
+        !confirmPassword
+    ) {
         alert("Please fill all fields");
         return;
     }
 
-    if (password !== confirmPassword) {
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return;
+    }
 
+    if (password !== confirmPassword) {
         alert("Passwords do not match");
         return;
     }
 
     let users =
-        JSON.parse(localStorage.getItem("users")) || [];
+        JSON.parse(
+            localStorage.getItem("users")
+        ) || [];
 
-    let exists =
-        users.find(user => user.email === email);
+    const exists =
+        users.find(
+            user =>
+                user.email === email
+        );
 
     if (exists) {
-
         alert("User already exists");
         return;
     }
 
-    users.push({
+    const newUser = {
         id: Date.now(),
         name,
         email,
         password,
-        role: "user"
-    });
+        role: "user",
+        createdAt: new Date()
+    };
+
+    users.push(newUser);
 
     localStorage.setItem(
         "users",
@@ -75,57 +77,78 @@ function reguser() {
 
     alert("Registration Successful");
 
-    window.location.href = "./login.html";
+    window.location.href =
+        "./login.html";
 }
 
 
-// ================= LOGIN 
+// ======================
+// LOGIN
+// ======================
 
 function loginuser() {
 
-    let email =
+    const email =
         document.getElementById("loginEmail")
         .value.trim()
         .toLowerCase();
 
-    let password =
+    const password =
         document.getElementById("loginPassword")
         .value;
 
+    if (!email || !password) {
+        alert("Please fill all fields");
+        return;
+    }
+
     // ADMIN LOGIN
+
     if (
         email === "admin@velora.com" &&
         password === "admin123"
     ) {
 
+        const adminUser = {
+            id: 0,
+            name: "Admin",
+            email: "admin@velora.com",
+            role: "admin"
+        };
+
         localStorage.setItem(
             "currentUser",
-            JSON.stringify({
-                name: "Admin",
-                email: email,
-                role: "admin"
-            })
+            JSON.stringify(adminUser)
         );
 
         alert("Admin Login Successful");
 
-        window.location.href = "./admin.html";
+        window.location.href =
+            "./admin.html";
+
         return;
     }
 
     // USER LOGIN
-    let users =
-        JSON.parse(localStorage.getItem("users")) || [];
 
-    let user = users.find(
-        u =>
-            u.email.toLowerCase() === email &&
-            u.password === password
-    );
+    const users =
+        JSON.parse(
+            localStorage.getItem("users")
+        ) || [];
+
+    const user =
+        users.find(
+            u =>
+                u.email.toLowerCase() === email &&
+                u.password === password
+        );
 
     if (!user) {
 
-        alert("Invalid Email or Password");
+        alert(
+            "Invalid Email or Password"
+        );
+
         return;
     }
 
@@ -136,5 +159,83 @@ function loginuser() {
 
     alert("Login Successful");
 
-    window.location.href = "../index.html";
+    window.location.href =
+        "../index.html";
+}
+
+
+// ======================
+// LOGOUT
+// ======================
+
+function logout() {
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+    window.location.href =
+        "./login.html";
+}
+
+
+// ======================
+// FORGOT PASSWORD
+// ======================
+
+function resetPassword() {
+
+    const email =
+        document.getElementById("resetEmail")
+        .value.trim()
+        .toLowerCase();
+
+    const newPassword =
+        document.getElementById("newPassword")
+        .value;
+
+    if (
+        !email ||
+        !newPassword
+    ) {
+        alert("Fill all fields");
+        return;
+    }
+
+    let users =
+        JSON.parse(
+            localStorage.getItem("users")
+        ) || [];
+
+    const user =
+        users.find(
+            u =>
+                u.email.toLowerCase() === email
+        );
+
+    if (!user) {
+
+        alert("User not found");
+
+        return;
+    }
+
+    user.password =
+        newPassword;
+
+    localStorage.setItem(
+        "users",
+        JSON.stringify(users)
+    );
+
+    alert(
+        "Password Updated Successfully"
+    );
+
+    if (
+        typeof closeForgotModal ===
+        "function"
+    ) {
+        closeForgotModal();
+    }
 }

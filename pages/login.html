@@ -95,9 +95,7 @@ Welcome back to your fashion destination
 <div>
 
 <label class="block mb-2 font-medium">
-
 Email Address
-
 </label>
 
 <input
@@ -114,9 +112,7 @@ required>
 <div>
 
 <label class="block mb-2 font-medium">
-
 Password
-
 </label>
 
 <div class="relative">
@@ -135,8 +131,7 @@ class="absolute right-4 top-1/2 -translate-y-1/2">
 
 <i
 id="eyeIcon"
-class="fa-solid fa-eye text-gray-500">
-</i>
+class="fa-solid fa-eye text-gray-500"></i>
 
 </button>
 
@@ -189,9 +184,7 @@ Login
 <div class="flex-1 border-t"></div>
 
 <span class="px-4 text-gray-400 text-sm">
-
 OR
-
 </span>
 
 <div class="flex-1 border-t"></div>
@@ -203,19 +196,19 @@ OR
 <div class="grid grid-cols-2 gap-3">
 
 <button
+type="button"
 class="border py-3 rounded-xl hover:bg-gray-100">
 
 <i class="fa-brands fa-google mr-2"></i>
-
 Google
 
 </button>
 
 <button
+type="button"
 class="border py-3 rounded-xl hover:bg-gray-100">
 
 <i class="fa-brands fa-facebook-f mr-2"></i>
-
 Facebook
 
 </button>
@@ -351,7 +344,8 @@ function resetPassword(){
 
 let email =
 document.getElementById("resetEmail")
-.value.trim();
+.value.trim()
+.toLowerCase();
 
 let newPassword =
 document.getElementById("newPassword")
@@ -364,7 +358,7 @@ localStorage.getItem("users")
 
 let user =
 users.find(
-u => u.email === email
+u => u.email.toLowerCase() === email
 );
 
 if(!user){
@@ -380,7 +374,7 @@ localStorage.setItem(
 JSON.stringify(users)
 );
 
-alert("Password Updated");
+alert("Password Updated Successfully");
 
 closeForgotModal();
 }
