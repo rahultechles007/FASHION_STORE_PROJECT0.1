@@ -24,26 +24,38 @@ function showToast(message) {
 
 function reguser() {
 
-    let name = document.getElementById("name").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let password = document.getElementById("password").value;
-    let confirmPassword = document.getElementById("confirmPassword").value;
+    let name =
+        document.getElementById("registerName").value.trim();
+
+    let email =
+        document.getElementById("registerEmail").value.trim();
+
+    let password =
+        document.getElementById("registerPassword").value;
+
+    let confirmPassword =
+        document.getElementById("confirmPassword").value;
 
     if (!name || !email || !password || !confirmPassword) {
-        alert("Fill all fields");
+
+        alert("Please fill all fields");
         return;
     }
 
     if (password !== confirmPassword) {
+
         alert("Passwords do not match");
         return;
     }
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let users =
+        JSON.parse(localStorage.getItem("users")) || [];
 
-    let exists = users.find(u => u.email === email);
+    let exists =
+        users.find(user => user.email === email);
 
     if (exists) {
+
         alert("User already exists");
         return;
     }
@@ -52,12 +64,16 @@ function reguser() {
         id: Date.now(),
         name,
         email,
-        password
+        password,
+        role: "user"
     });
 
-    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem(
+        "users",
+        JSON.stringify(users)
+    );
 
-    alert("Registered Successfully");
+    alert("Registration Successful");
 
     window.location.href = "./login.html";
 }
