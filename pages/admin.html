@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Velora Admin Dashboard</title>
+
+<link rel="stylesheet" href="../src/output.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+html,
+body{
+    overflow-x:hidden;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.fade-in{
+    animation:fadeIn .5s ease;
+}
+
+.card-hover:hover{
+    transform:translateY(-5px);
+    transition:.3s;
+}
+
+</style>
+
+</head>
+
+<body class="bg-[#F5F2EB]">
+
+<!-- HEADER -->
+
+<header class="bg-white shadow sticky top-0 z-50">
+
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+
+          <!-- Logo -->
+      <a href="" class="flex items-center gap-2 text-3xl font-bold">
+                    <i class="fa-solid fa-gem text-[#C8A96B]"></i>
+                    <span>
+                        VE<span class="text-[#C8A96B]">L</span>ORA ADMIN
+                    </span>
+                </a>
+
+
+        <button
+            onclick="logout()"
+            class="bg-red-500 text-white px-5 py-2 rounded-xl hover:bg-red-600">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+<!-- NAVIGATION -->
+
+<nav class="bg-[#1E1A17] text-white">
+
+    <div class="max-w-7xl mx-auto flex flex-wrap gap-3 px-4 py-4">
+
+        <a href="#dashboard"
+           class="px-4 py-2 rounded-lg hover:bg-[#C8A96B] hover:text-black">
+            Dashboard
+        </a>
+
+        <a href="#orders"
+           class="px-4 py-2 rounded-lg hover:bg-[#C8A96B] hover:text-black">
+            Orders
+        </a>
+
+        <a href="#products"
+           class="px-4 py-2 rounded-lg hover:bg-[#C8A96B] hover:text-black">
+            Products
+        </a>
+
+        <a href="#users"
+           class="px-4 py-2 rounded-lg hover:bg-[#C8A96B] hover:text-black">
+            Users
+        </a>
+
+    </div>
+
+</nav>
+
+<!-- MAIN -->
+
+<main
+id="dashboard"
+class="max-w-7xl mx-auto px-4 py-6 space-y-6 fade-in">
+
+<!-- STATS -->
+
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+    <div class="bg-white p-5 rounded-2xl shadow card-hover">
+        <p class="text-gray-500">Orders</p>
+        <h2 id="totalOrders" class="text-3xl font-bold">0</h2>
+    </div>
+
+    <div class="bg-white p-5 rounded-2xl shadow card-hover">
+        <p class="text-gray-500">Users</p>
+        <h2 id="totalUsers" class="text-3xl font-bold">0</h2>
+    </div>
+
+    <div class="bg-white p-5 rounded-2xl shadow card-hover">
+        <p class="text-gray-500">Products</p>
+        <h2 id="totalProducts" class="text-3xl font-bold">0</h2>
+    </div>
+
+    <div class="bg-white p-5 rounded-2xl shadow card-hover">
+        <p class="text-gray-500">Revenue</p>
+        <h2 class="text-3xl font-bold">
+            ₹<span id="totalRevenue">0</span>
+        </h2>
+    </div>
+
+</div>
+
+<!-- CHART -->
+
+<div class="bg-white p-6 rounded-2xl shadow">
+
+    <h2 class="font-bold text-xl mb-4">
+        Daily Sales
+    </h2>
+
+    <canvas id="salesChart"></canvas>
+
+</div>
+
+<!-- ORDER FILTER -->
+
+<div>
+
+<select
+id="statusFilter"
+onchange="renderOrders()"
+class="border p-3 rounded-xl">
+
+<option value="All">All Orders</option>
+<option value="Processing">Processing</option>
+<option value="Shipped">Shipped</option>
+<option value="Delivered">Delivered</option>
+
+</select>
+
+</div>
+
+<!-- ORDERS -->
+
+<div id="orders" class="space-y-4"></div>
+
+<!-- PRODUCT FORM -->
+
+<div id="products" class="bg-white p-6 rounded-2xl shadow space-y-4">
+
+    <h2 class="text-2xl font-bold">
+        Add Product
+    </h2>
+
+    <input
+        id="pName"
+        placeholder="Product Name"
+        class="border p-3 rounded-xl w-full">
+
+    <input
+        id="pPrice"
+        type="number"
+        placeholder="Price"
+        class="border p-3 rounded-xl w-full">
+
+ 
+    <input
+        id="pImage"
+        type="file"
+        placeholder="product1.jpg"
+        class="border p-3 rounded-xl w-full">
+
+<input
+    id="pDescription"
+    placeholder="Product Description"
+    class="border p-3 rounded-xl w-full">
+    <select
+        id="pCategory"
+        class="border p-3 rounded-xl w-full">
+
+        <option value="Traditional">Traditional</option>
+        <option value="Western">Western</option>
+        <option value="Footwear">Footwear</option>
+        <option value="Accessories">Accessories</option>
+
+    </select>
+
+    <input
+        id="pRating"
+        type="number"
+        min="1"
+        max="5"
+        value="5"
+        class="border p-3 rounded-xl w-full">
+
+    <button
+        onclick="addProduct()"
+        class="bg-[#1E1A17] text-white px-6 py-3 rounded-xl hover:bg-[#C8A96B]">
+
+        Add Product
+
+    </button>
+
+</div>
+
+<!-- PRODUCT LIST -->
+
+<div class="bg-white p-6 rounded-2xl shadow">
+
+    <h2 class="text-2xl font-bold mb-4">
+        Product List
+    </h2>
+
+    <div id="productList" class="space-y-3"></div>
+
+</div>
+<!-- USERS -->
+
+<div
+id="users"
+class="bg-white p-6 rounded-2xl shadow">
+
+    <h2 class="text-2xl font-bold mb-4">
+        Users
+    </h2>
+
+    <div id="userList"></div>
+
+</div>
+
+<!-- NEWSLETTER -->
+
+<div class="bg-white p-6 rounded-2xl shadow">
+
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+
+        <div>
+
+            <h3 class="text-xl font-bold">
+                Newsletter Subscribers
+            </h3>
+
+            <p class="text-gray-500">
+                Download subscriber list
+            </p>
+
+        </div>
+
+        <button
+        onclick="downloadSubscribers()"
+        class="bg-[#1E1A17] text-white px-5 py-3 rounded-xl hover:bg-[#C8A96B]">
+
+            Download PDF
+
+        </button>
+
+    </div>
+
+</div>
+
+</main>
+
+<script>
+
+/* LOGIN CHECK */
+
+let admin =
+JSON.parse(localStorage.getItem("currentUser"));
+
+if(!admin){
+
+    window.location.href="./login.html";
+
+}
+
+/* LOGOUT */
+
+function logout(){
+
+    localStorage.removeItem("currentUser");
+
+    window.location.href="./login.html";
+
+}
+
+/* DATA */
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+let products =
+JSON.parse(localStorage.getItem("products")) || [];
+
+let users =
+JSON.parse(localStorage.getItem("users")) || [];
+
+/* STATS */
+
+function loadStats(){
+
+    document.getElementById("totalOrders").innerText =
+    orders.length;
+
+    document.getElementById("totalUsers").innerText =
+    users.length;
+
+    document.getElementById("totalProducts").innerText =
+    products.length;
+
+    let revenue =
+    orders.reduce((sum,o)=>sum+(o.total||0),0);
+
+    document.getElementById("totalRevenue").innerText =
+    revenue;
+}
+
+/* ORDERS */
+
+function renderOrders(){
+
+    const filter =
+    document.getElementById("statusFilter").value;
+
+    const container =
+    document.getElementById("orders");
+
+    container.innerHTML="";
+
+    let filtered =
+    orders.filter(o=>
+        filter==="All"
+        ? true
+        : (o.status||"Processing")===filter
+    );
+
+    filtered.forEach(order=>{
+
+        container.innerHTML += `
+
+        <div class="bg-white p-4 rounded-xl shadow flex flex-col md:flex-row justify-between gap-3">
+
+            <div>
+                <p class="font-bold">#${order.id}</p>
+                <p>${order.userEmail || ""}</p>
+            </div>
+
+            <div class="flex gap-3 items-center">
+
+                <select
+                onchange="updateStatus(${order.id},this.value)"
+                class="border p-2 rounded">
+
+                    <option ${order.status==="Processing"?"selected":""}>
+                        Processing
+                    </option>
+
+                    <option ${order.status==="Shipped"?"selected":""}>
+                        Shipped
+                    </option>
+
+                    <option ${order.status==="Delivered"?"selected":""}>
+                        Delivered
+                    </option>
+
+                </select>
+
+                <span class="font-bold">
+                    ₹${order.total || 0}
+                </span>
+
+            </div>
+
+        </div>
+        `;
+    });
+}
+
+function updateStatus(id,status){
+
+    orders = orders.map(o=>{
+
+        if(o.id===id){
+            o.status=status;
+        }
+
+        return o;
+    });
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+    renderOrders();
+}
+
+/* PRODUCTS */
+
+function addProduct() {
+
+    let name = document.getElementById("pName").value.trim();
+    let price = Number(document.getElementById("pPrice").value);
+    let category = document.getElementById("pCategory").value;
+    let rating = Number(document.getElementById("pRating").value);
+    let description = document.getElementById("pDescription").value.trim();
+
+    let imageFile =
+        document.getElementById("pImage").files[0];
+
+    if (!name || !price || !imageFile) {
+        alert("Please fill all required fields");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+
+        let newProduct = {
+            id: Date.now(),
+            name: name,
+            price: price,
+            category: category,
+            rating: rating,
+            image: e.target.result,
+            description: description || "No description available",
+            badge: "New"
+        };
+
+        products.push(newProduct);
+
+        localStorage.setItem(
+            "products",
+            JSON.stringify(products)
+        );
+
+        loadProducts();
+        loadStats();
+
+        alert("Product Added Successfully");
+    };
+
+    reader.readAsDataURL(imageFile);
+}
+
+function deleteProduct(id){
+
+    if(!confirm("Delete this product?")){
+        return;
+    }
+
+    products =
+    products.filter(product =>
+        product.id !== id
+    );
+
+    localStorage.setItem(
+        "products",
+        JSON.stringify(products)
+    );
+
+    loadProducts();
+    loadStats();
+
+}
+
+function loadProducts(){
+
+    let container =
+    document.getElementById("productList");
+
+    container.innerHTML = "";
+
+    products.forEach(product => {
+
+        let stars = "";
+
+        for(let i=0;i<product.rating;i++){
+
+            stars +=
+            `<i class="fa-solid fa-star text-yellow-500"></i>`;
+        }
+
+        container.innerHTML += `
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 border p-4 rounded-2xl">
+
+            <div class="flex items-center gap-4">
+
+                <img
+                src="${product.image}"
+                class="w-20 h-20 rounded-xl object-cover">
+
+                <div>
+
+                    <h3 class="font-bold">
+                        ${product.name}
+                    </h3>
+
+                    <p class="text-gray-500">
+                        ${product.category}
+                    </p>
+
+                    <p class="text-gray-500 text-sm mt-2 line-clamp-2">
+    ${product.description || "No description available"}
+</p>
+
+                    <div class="mt-1">
+                        ${stars}
+                    </div>
+
+                    <p class="font-bold mt-2">
+                        ₹${product.price}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <button
+            onclick="deleteProduct(${product.id})"
+            class="bg-red-500 text-white px-4 py-2 rounded-xl">
+
+                Delete
+
+            </button>
+
+        </div>
+
+        `;
+    });
+
+}
+
+/* USERS */
+
+function loadUsers(){
+
+    document.getElementById("userList").innerHTML =
+
+    users.map(user=>`
+
+        <div class="border p-3 rounded-xl mb-2">
+
+            ${user.email}
+
+        </div>
+
+    `).join("");
+}
+
+/* CHART */
+
+function loadChart(){
+
+    let daily={};
+
+    orders.forEach(order=>{
+
+        let date =
+        new Date(order.date || Date.now())
+        .toLocaleDateString();
+
+        daily[date] =
+        (daily[date]||0)+
+        (order.total||0);
+
+    });
+
+    new Chart(
+        document.getElementById("salesChart"),
+        {
+            type:"bar",
+
+            data:{
+                labels:Object.keys(daily),
+
+                datasets:[{
+                    label:"Sales",
+                    data:Object.values(daily)
+                }]
+            }
+        }
+    );
+}
+
+/* NEWSLETTER PDF */
+
+function downloadSubscribers(){
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    let emails =
+    JSON.parse(
+        localStorage.getItem("subhsite_emails")
+    ) || [];
+
+    doc.text(
+        "Velora Newsletter Subscribers",
+        20,
+        20
+    );
+
+    let y=40;
+
+    emails.forEach((email,index)=>{
+
+        doc.text(
+            `${index+1}. ${email}`,
+            20,
+            y
+        );
+
+        y+=10;
+
+    });
+
+    doc.save(
+        "velora-newsletter-subscribers.pdf"
+    );
+}
+
+/* INIT */
+
+loadStats();
+renderOrders();
+loadProducts();
+loadUsers();
+loadChart();
+
+</script>
+
+</body>
+</html>

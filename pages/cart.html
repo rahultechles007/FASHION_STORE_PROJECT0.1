@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart | Velora</title>
+
+<link rel="stylesheet" href="../src/output.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="bg-[#F5F2EB]">
+
+<div class="max-w-6xl mx-auto px-4 py-8">
+
+    <h1 class="text-3xl font-bold text-center mb-10">Your Shopping Cart</h1>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+
+        <!-- CART ITEMS -->
+        <div class="lg:col-span-2 space-y-4">
+            <div id="cartItems" class="space-y-4"></div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="bg-white rounded-2xl shadow p-6 h-fit">
+
+            <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+
+            <div class="flex justify-between text-gray-600 mb-2">
+                <span>Subtotal</span>
+                <span>₹<span id="totalPrice">0</span></span>
+            </div>
+
+            <div class="flex justify-between text-gray-600 mb-2">
+                <span>Shipping</span>
+                <span>Free</span>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="flex justify-between text-lg font-bold">
+                <span>Total</span>
+                <span>₹<span id="totalPrice2">0</span></span>
+            </div>
+
+            <a href="./checkout.html"
+               class="block mt-6 text-center bg-[#1E1A17] text-white py-3 rounded-xl hover:bg-[#cba75e] transition">
+                Proceed to Checkout
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t flex justify-around py-2 md:hidden z-50">
+
+    <a href="../index.html"><i class="fa-solid fa-house"></i></a>
+    <a href="./shop.html"><i class="fa-solid fa-bag-shopping"></i></a>
+
+    <a href="./cart.html" class="relative">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cartCount"
+              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+            0
+        </span>
+    </a>
+
+    <a href="./wishlist.html"><i class="fa-regular fa-heart"></i></a>
+    <a href="./profile.html"><i class="fa-solid fa-user"></i></a>
+
+</div>
+
+<script src="../assets/js/cart.js"></script>
+
+<script>
+const user = JSON.parse(localStorage.getItem("currentUser"));
+if (!user) window.location.href = "./login.html";
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist | Velora</title>
+    <link rel="stylesheet" href="../src/output.css">
+</head>
+
+<body class="bg-[#F5F2EB]">
+
+    <div class="max-w-6xl mx-auto p-6">
+
+        <h1 class="text-2xl font-bold mb-6">My Wishlist</h1>
+
+        <div id="wishlistGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+
+    </div>
+
+    <script src="../assets/js/wishlist.js"></script>
+<!-- MOBILE BOTTOM NAV -->
+<div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t flex justify-around py-2 md:hidden z-50">
+
+    <a href="../index.html" class="text-center text-sm">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <a href="./shop.html" class="text-center text-sm">
+        <i class="fa-solid fa-bag-shopping"></i>
+    </a>
+
+    <a href="./cart.html" class="relative text-center text-sm">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">0</span>
+    </a>
+
+    <a href="./wishlist.html" class="text-center text-sm">
+        <i class="fa-regular fa-heart"></i>
+    </a>
+
+    <a href="./profile.html" class="text-center text-sm">
+        <i class="fa-solid fa-user"></i>
+    </a>
+
+</div>
+</body>
+
+</html>

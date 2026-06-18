@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | Velora</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../src/output.css">
+</head>
+
+<body class="bg-[#F5F2EB] text-[#1E1A17]">
+
+    <!-- PRODUCT CONTAINER -->
+    <div class="max-w-5xl mx-auto px-4 py-10">
+
+        <div id="productDetail" class="bg-white rounded-2xl shadow-md overflow-hidden">
+
+            <!-- PRODUCT WILL LOAD HERE -->
+
+        </div>
+
+    </div>
+
+    <script>
+
+        // GET PRODUCT ID FROM URL
+        const params = new URLSearchParams(window.location.search);
+        const productId = Number(params.get("id"));
+
+        // LOAD PRODUCTS FROM LOCALSTORAGE OR FALLBACK
+        const products = JSON.parse(localStorage.getItem("products")) || [];
+
+        const product = products.find(p => p.id === productId);
+
+        const container = document.getElementById("productDetail");
+
+        if (!product) {
+            container.innerHTML = `
+                <div class="p-10 text-center text-gray-500">
+                    Product not found
+                </div>
+            `;
+        } else {
+            container.innerHTML = `
+                <img src="${product.image}" class="w-full h-80 object-cover">
+
+                <div class="p-6">
+
+                    <h1 class="text-2xl font-bold">
+                        ${product.name}
+                    </h1>
+
+                    <p class="text-gray-500 mt-2">
+                        ${product.category}
+                    </p>
+
+                    <div class="mt-4 text-xl font-bold">
+                        ₹${product.price}
+                    </div>
+
+                   <p class="text-gray-600 mt-4 leading-relaxed">
+    ${product.description}
+</p>
+                    <div class="flex gap-3 mt-6">
+
+                        <button class="flex-1 bg-[#C8A96B] text-white py-3 rounded-xl">
+                            Add to Cart
+                        </button>
+
+                        <button class="flex-1 border border-[#1E1A17] py-3 rounded-xl">
+                            Wishlist
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+        }
+
+    </script>
+
+</body>
+
+</html>

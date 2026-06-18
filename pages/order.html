@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Orders | Velora</title>
+<link rel="stylesheet" href="../src/output.css">
+</head>
+
+<body class="bg-[#F5F2EB] min-h-screen">
+
+<div class="max-w-5xl mx-auto px-4 py-10">
+
+    <h1 class="text-3xl font-bold text-center mb-8">
+        My Orders
+    </h1>
+
+    <div id="ordersList" class="space-y-6"></div>
+
+</div>
+
+function loadOrders() {
+
+    let user = JSON.parse(localStorage.getItem("currentUser"));
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    let userOrders = orders.filter(o => o.userEmail === user.email);
+
+    let container = document.getElementById("ordersList");
+
+    if (userOrders.length === 0) {
+        container.innerHTML = "<p class='text-center text-gray-500'>No orders yet</p>";
+        return;
+    }
+
+    userOrders.reverse().forEach(order => {
+
+        let total = 0;
+
+        let itemsHTML = "";
+
+        order.items.forEach(item => {
+            let qty = item.quantity || 1;
+            total += item.price * qty;
+
+            itemsHTML += `
+                <div class="flex justify-between text-sm text-gray-600">
+                    <span>${item.name} × ${qty}</span>
+                    <span>₹${item.price * qty}</span>
+                </div>
+            `;
+        });
+
+        container.innerHTML += `
+        <div class="bg-white p-5 rounded-2xl shadow">
+
+            <div class="flex justify-between text-sm text-gray-500 mb-2">
+                <span>Order ID: ${order.id}</span>
+                <span>${order.status}</span>
+            </div>
+
+            ${itemsHTML}
+
+            <hr class="my-3">
+
+            <div class="flex justify-between font-bold">
+                <span>Total</span>
+                <span>₹${total}</span>
+            </div>
+
+        </div>
+        `;
+    });
+}
+
+</body>
+</html>

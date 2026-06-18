@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora Fashion Store</title>
+
+    <link rel="stylesheet" href="./src/output.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-beige text-premium pb-20 md:pb-0">
+
+    <!-- HEADER -->
+    <header>
+    <header>
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo -->
+      <a href="../index.html" class="flex items-center gap-2 text-3xl font-bold">
+                    <i class="fa-solid fa-gem text-[#C8A96B]"></i>
+                    <span>
+                        VE<span class="text-[#C8A96B]">L</span>ORA
+                    </span>
+                </a>
+
+
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex items-center gap-8 font-medium text-sm">
+
+        <li><a href="index.html" class="hover:text-gold transition">Home</a></li>
+        <li><a href="./pages/shop.html" class="hover:text-gold transition">Shop</a></li>
+        <li><a href="./pages/wishlist.html" class="hover:text-gold transition">Wishlist</a></li>
+        <li><a href="./pages/cart.html" class="hover:text-gold transition">Cart</a></li>
+      
+
+      </ul>
+
+      <!-- Desktop Icons -->
+      <div class="hidden md:flex items-center gap-5">
+
+        <!-- Cart -->
+        <a href="./pages/cart.html" class="relative">
+          <i class="fa-solid fa-cart-shopping"></i>
+
+          <span id="cartCount"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+            0
+          </span>
+        </a>
+
+        <!-- Wishlist -->
+        <a href="./pages/wishlist.html" class="relative">
+          <i class="fa-regular fa-heart text-lg"></i>
+
+          <span id="wishlistCount"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+            0
+          </span>
+        </a>
+
+        <!-- User -->
+        <a href="./pages/profile.html">
+          <i data-lucide="user"></i>
+        </a>
+
+        <!-- Logout -->
+        <button onclick="logout()" class="text-red-500 text-sm font-medium">
+          Logout
+        </button>
+
+      </div>
+
+      <!-- Mobile Button -->
+      <button id="menuBtn" class="md:hidden p-2">
+        <i data-lucide="menu"></i>
+      </button>
+
+    </div>
+
+  </div>
+</nav>
+<div id="mobileMenu"
+     class="fixed top-0 right-[-100%] w-72 h-screen bg-white shadow-2xl z-[999] transition-all duration-500 md:hidden">
+
+  <div class="flex items-center justify-between p-5 border-b">
+    <h2 class="text-xl font-bold text-gold">VELORA</h2>
+    <button id="closeMenu">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <ul class="flex flex-col p-6 space-y-6 font-medium">
+
+    <li><a href="index.html">Home</a></li>
+    <li><a href="./pages/shop.html">Shop</a></li>
+    <li><a href="./pages/wishlist.html">Wishlist</a></li>
+    <li><a href="./pages/cart.html">Cart</a></li>
+    <li><a href="./pages/login.html">Login</a></li>
+    <li><a href="./pages/register.html">Register</a></li>
+
+  </ul>
+
+</div>
+    </header>
+
+    
+
+    <!-- MAIN -->
+  <section class="relative h-[60vh] sm:h-[65vh] md:h-[70vh] lg:h-[75vh] overflow-hidden">
+
+    <!-- Slider Container -->
+    <div id="slider" class="relative h-full">
+
+        <!-- Slide 1 -->
+        <div class="slide absolute inset-0">
+
+            <img
+                src="./assets/images/hero/hero1.jpg"
+                alt="Velora Fashion"
+                class="w-full h-full object-cover"
+            >
+
+            <!-- Luxury Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20"></div>
+
+            <!-- Content -->
+            <div class="absolute inset-0 flex items-center">
+
+                <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+
+                    <div class="max-w-2xl">
+
+                        <span class="text-gold uppercase tracking-[5px] text-xs sm:text-sm md:text-base">
+                            Velora Collection
+                        </span>
+
+                        <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 leading-tight">
+                            Elevate Your Everyday Style
+                        </h1>
+
+                        <p class="text-gray-200 mt-4 text-sm sm:text-base md:text-lg max-w-lg">
+                            Discover premium fashion collections crafted for modern elegance, confidence, and timeless luxury.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 mt-8">
+
+                            <a
+                                href="./pages/shop.html"
+                                class="bg-gold text-white px-7 py-3 rounded-full text-center font-medium hover:bg-premium transition duration-300"
+                            >
+                                Shop Now
+                            </a>
+
+                            <a
+                                href="./pages/shop.html"
+                                class="border border-white text-white px-7 py-3 rounded-full text-center font-medium hover:bg-white hover:text-premium transition duration-300"
+                            >
+                                Explore Collection
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide absolute inset-0 hidden">
+
+            <img
+                src="./assets/images/hero/hero2.jpg"
+                alt="Premium Men"
+                class="w-full h-full object-cover"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20"></div>
+
+            <div class="absolute inset-0 flex items-center">
+
+                <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+
+                    <div class="max-w-2xl">
+
+                        <span class="text-gold uppercase tracking-[5px]">
+                            
+                        </span>
+
+                        <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 leading-tight">
+                            Tailored For Modern Gentlemen
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide absolute inset-0 hidden">
+
+            <img
+                src="./assets/images/hero/hero3.jpg"
+                alt="Summer Collection"
+                class="w-full h-full object-cover"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20"></div>
+
+            <div class="absolute inset-0 flex items-center">
+
+                <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+
+                    <div class="max-w-2xl">
+
+                        <span class="text-gold uppercase tracking-[5px]">
+                            Summer Collection
+                        </span>
+
+                        <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 leading-tight">
+                            Refresh Your Wardrobe
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide absolute inset-0 hidden">
+
+            <img
+                src="./assets/images/hero/hero4.jpg"
+                alt="Accessories"
+                class="w-full h-full object-cover"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20"></div>
+
+            <div class="absolute inset-0 flex items-center">
+
+                <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+
+                    <div class="max-w-2xl">
+
+                        <span class="text-gold uppercase tracking-[5px]">
+                            Accessories
+                        </span>
+
+                        <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 leading-tight">
+                            Complete Your Signature Look
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide absolute inset-0 hidden">
+
+            <img
+                src="./assets/images/hero/hero5.jpg"
+                alt="New Arrivals"
+                class="w-full h-full object-cover"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20"></div>
+
+            <div class="absolute inset-0 flex items-center">
+
+                <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+
+                    <div class="max-w-2xl">
+
+                        <span class="text-gold uppercase tracking-[5px]">
+                            New Arrivals
+                        </span>
+
+                        <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 leading-tight">
+                            Luxury Fashion Starts Here
+                        </h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Previous Button -->
+    <button
+        id="prevBtn"
+        class="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-gold transition duration-300"
+    >
+        ←
+    </button>
+
+    <!-- Next Button -->
+    <button
+        id="nextBtn"
+        class="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-gold transition duration-300"
+    >
+        →
+    </button>
+
+    <!-- Dots -->
+    <div class="absolute bottom-5 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+
+        <span class="dot w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-white cursor-pointer"></span>
+        <span class="dot w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-white/50 cursor-pointer"></span>
+        <span class="dot w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-white/50 cursor-pointer"></span>
+        <span class="dot w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-white/50 cursor-pointer"></span>
+        <span class="dot w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-white/50 cursor-pointer"></span>
+
+    </div>
+
+</section>
+
+    <!-- category section  start -->
+     <section class="py-16 lg:py-24">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-12">
+
+            <span class="text-gold uppercase tracking-[4px]">
+                Categories
+            </span>
+
+            <h2 class="text-3xl md:text-4xl font-bold mt-3">
+                Shop By Category
+            </h2>
+
+        </div>
+
+       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+
+            <!-- Men -->
+
+           <a
+href="./pages/shop.html"
+class="group relative overflow-hidden rounded-2xl bg-white shadow-md block transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+
+    <img
+        src="./assets/images/categories/women1.jpg"
+        alt="Men Fashion"
+        class="w-full h-56 sm:h-64 lg:h-72 object-cover transition duration-700 group-hover:scale-110"
+    >
+
+    <div
+        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+    </div>
+
+    <div class="absolute bottom-4 left-4">
+
+        <h3 class="text-white text-lg md:text-xl font-semibold">
+            women
+        </h3>
+
+        <p class="text-gray-200 text-xs md:text-sm">
+            Sarara collections
+        </p>
+
+    </div>
+
+</a>
+
+            <!-- Women -->
+
+            <a
+href="./pages/shop.html"
+class="group relative overflow-hidden rounded-2xl bg-white shadow-md block transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+
+    <img
+        src="./assets/images/categories/women2.jpg"
+        alt="Men Fashion"
+        class="w-full h-56 sm:h-64 lg:h-72 object-cover transition duration-700 group-hover:scale-110"
+    >
+
+    <div
+        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+    </div>
+
+    <div class="absolute bottom-4 left-4">
+
+        <h3 class="text-white text-lg md:text-xl font-semibold">
+            women
+        </h3>
+
+        <p class="text-gray-200 text-xs md:text-sm">
+            Desses
+        </p>
+
+    </div>
+
+</a>
+            <!-- Footwear -->
+
+            <a
+href="./pages/shop.html"
+class="group relative overflow-hidden rounded-2xl bg-white shadow-md block transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+
+    <img
+        src="./assets/images/categories/women3.jpg"
+        alt="Men Fashion"
+        class="w-full h-56 sm:h-64 lg:h-72 object-cover transition duration-700 group-hover:scale-110"
+    >
+
+    <div
+        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+    </div>
+
+    <div class="absolute bottom-4 left-4">
+
+        <h3 class="text-white text-lg md:text-xl font-semibold">
+        women
+        </h3>
+
+        <p class="text-gray-200 text-xs md:text-sm">
+            Shoes Products
+        </p>
+
+    </div>
+
+</a>
+
+            <!-- Accessories -->
+
+            <a
+href="./pages/shop.html"
+class="group relative overflow-hidden rounded-2xl bg-white shadow-md block transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+
+    <img
+        src="./assets/images/categories/women4.jpg"
+        alt="Men Fashion"
+        class="w-full h-56 sm:h-64 lg:h-72 object-cover transition duration-700 group-hover:scale-110"
+    >
+
+    <div
+        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+    </div>
+
+    <div class="absolute bottom-4 left-4">
+
+        <h3 class="text-white text-lg md:text-xl font-semibold">
+            Women
+        </h3>
+
+        <p class="text-gray-200 text-xs md:text-sm">
+         Handbag Products
+        </p>
+
+    </div>
+
+</a>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- category section end -->
+
+<!-- price and heading -->
+ <section class="py-14 lg:py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Heading -->
+
+        <div class="flex items-center justify-between mb-10">
+
+            <div>
+
+                <span class="text-gold uppercase tracking-[4px] text-sm">
+                    Featured Products
+                </span>
+
+                <h2 class="text-2xl md:text-4xl font-bold mt-2">
+                    New Arrivals
+                </h2>
+
+            </div>
+
+            <a
+                href="pages/shop.html"
+                class="hidden md:inline-flex text-gold font-medium hover:underline"
+            >
+                View All
+            </a>
+
+        </div>
+
+        <!-- Products Grid -->
+<!-- 8-->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+           <div
+    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group"
+>
+
+    <!-- Image -->
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/products/product2.jpg"
+            alt="Premium Jacket"
+            class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-700"
+        >
+
+        <!-- Sale Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-gold text-white text-xs px-3 py-1 rounded-full"
+        >
+            Sale
+        </span>
+
+        <!-- Wishlist -->
+
+        <button
+            class="absolute top-3 right-3 bg-white w-9 h-9 rounded-full flex items-center justify-center shadow"
+        >
+            ♥
+        </button>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+           Women
+        </p>
+
+        <h3 class="font-semibold text-sm md:text-base mt-1">
+            Minimalist Black Wide-Leg 
+Trousers
+        </h3>
+
+        <!-- Rating -->
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★
+
+        </div>
+
+        <!-- Price -->
+
+        <div class="flex items-center gap-2 mt-3">
+
+            <span class="font-bold text-lg">
+                ₹3,999
+            </span>
+
+            <span class="text-gray-400 line-through text-sm">
+                ₹4,999
+            </span>
+
+        </div>
+
+        <!-- Button -->
+
+    <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+
+    </div>
+
+</div>
+
+<!--7-->
+<div
+    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group"
+>
+
+    <!-- Image -->
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/products/product3.jpg"
+            alt="Premium Jacket"
+            class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-700"
+        >
+
+        <!-- Sale Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-gold text-white text-xs px-3 py-1 rounded-full"
+        >
+            Sale
+        </span>
+
+        <!-- Wishlist -->
+
+        <button
+            class="absolute top-3 right-3 bg-white w-9 h-9 rounded-full flex items-center justify-center shadow"
+        >
+            ♥
+        </button>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            Women
+        </p>
+
+        <h3 class="font-semibold text-sm md:text-base mt-1">
+     Sandstone Relaxed Co
+Ord Set 
+        </h3>
+
+        <!-- Rating -->
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <!-- Price -->
+
+        <div class="flex items-center gap-2 mt-3">
+
+            <span class="font-bold text-lg">
+                ₹6,999
+            </span>
+
+            <span class="text-gray-400 line-through text-sm">
+                ₹8,999
+            </span>
+
+        </div>
+
+        <!-- Button -->
+
+       <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+
+    </div>
+
+</div>
+<!--6-->
+<div
+    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group"
+>
+
+    <!-- Image -->
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/products/product4.jpg"
+            alt="Premium Jacket"
+            class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-700"
+        >
+
+        <!-- Sale Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-gold text-white text-xs px-3 py-1 rounded-full"
+        >
+            Sale
+        </span>
+
+        <!-- Wishlist -->
+
+        <button
+            class="absolute top-3 right-3 bg-white w-9 h-9 rounded-full flex items-center justify-center shadow"
+        >
+            ♥
+        </button>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            women
+        </p>
+
+        <h3 class="font-semibold text-sm md:text-base mt-1">
+          Beige Linen Summer Co
+Ord Set 
+        </h3>
+
+        <!-- Rating -->
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <!-- Price -->
+
+        <div class="flex items-center gap-2 mt-3">
+
+            <span class="font-bold text-lg">
+                ₹4,999
+            </span>
+
+            <span class="text-gray-400 line-through text-sm">
+                ₹6,999
+            </span>
+
+        </div>
+
+        <!-- Button -->
+
+        <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+
+    </div>
+
+</div>
+
+<!--5-->
+<div
+    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group"
+>
+
+    <!-- Image -->
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/products/product5.jpg"
+            alt="Premium Jacket"
+            class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-700"
+        >
+
+        <!-- Sale Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-gold text-white text-xs px-3 py-1 rounded-full"
+        >
+            Sale
+        </span>
+
+        <!-- Wishlist -->
+
+        <button
+            class="absolute top-3 right-3 bg-white w-9 h-9 rounded-full flex items-center justify-center shadow"
+        >
+            ♥
+        </button>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            Women
+        </p>
+
+        <h3 class="font-semibold text-sm md:text-base mt-1">
+           Mocha Office Wide-Leg 
+Trousers 
+        </h3>
+
+        <!-- Rating -->
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <!-- Price -->
+
+        <div class="flex items-center gap-2 mt-3">
+
+            <span class="font-bold text-lg">
+                ₹4,999
+            </span>
+
+            <span class="text-gray-400 line-through text-sm">
+                ₹6,999
+            </span>
+
+        </div>
+
+        <!-- Button -->
+
+       <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+
+    </div>
+
+</div>
+
+<!--4-->
+
+<div
+    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group"
+>
+
+    <!-- Image -->
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/products/product6.jpg"
+            alt="Premium Jacket"
+            class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-700"
+        >
+
+        <!-- Sale Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-gold text-white text-xs px-3 py-1 rounded-full"
+        >
+            Sale
+        </span>
+
+        <!-- Wishlist -->
+
+        <button
+            class="absolute top-3 right-3 bg-white w-9 h-9 rounded-full flex items-center justify-center shadow"
+        >
+            ♥
+        </button>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            Women
+        </p>
+
+        <h3 class="font-semibold text-sm md:text-base mt-1">
+           All Black Relaxed Street 
+Set 
+        </h3>
+
+        <!-- Rating -->
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <!-- Price -->
+
+        <div class="flex items-center gap-2 mt-3">
+
+            <span class="font-bold text-lg">
+                ₹4,999
+            </span>
+
+            <span class="text-gray-400 line-through text-sm">
+                ₹6,999
+            </span>
+
+        </div>
+
+        <!-- Button -->
+
+       <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+    </div>
+
+</div>
+
+<!--3-->
+
+<div
+    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group"
+>
+
+    <!-- Image -->
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/products/product7.jpg"
+            alt="Premium Jacket"
+            class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-700"
+        >
+
+        <!-- Sale Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-gold text-white text-xs px-3 py-1 rounded-full"
+        >
+            Sale
+        </span>
+
+        <!-- Wishlist -->
+
+        <button
+            class="absolute top-3 right-3 bg-white w-9 h-9 rounded-full flex items-center justify-center shadow"
+        >
+            ♥
+        </button>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            Women
+        </p>
+
+        <h3 class="font-semibold text-sm md:text-base mt-1">
+       Retro Varsity Streetwear 
+Set 
+        </h3>
+
+        <!-- Rating -->
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <!-- Price -->
+
+        <div class="flex items-center gap-2 mt-3">
+
+            <span class="font-bold text-lg">
+                ₹4,999
+            </span>
+
+            <span class="text-gray-400 line-through text-sm">
+                ₹6,999
+            </span>
+
+        </div>
+
+        <!-- Button -->
+
+        <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+
+    </div>
+
+</div>
+<!--2-->
+<div
+    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group"
+>
+
+    <!-- Image -->
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/products/product8.jpg"
+            alt="Premium Jacket"
+            class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-700"
+        >
+
+        <!-- Sale Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-gold text-white text-xs px-3 py-1 rounded-full"
+        >
+            Sale
+        </span>
+
+        <!-- Wishlist -->
+
+        <button
+            class="absolute top-3 right-3 bg-white w-9 h-9 rounded-full flex items-center justify-center shadow"
+        >
+            ♥
+        </button>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            Women
+        </p>
+
+        <h3 class="font-semibold text-sm md:text-base mt-1">
+         Classic Glamour 
+(Checkered Vest & Satin 
+Skirt Look) 
+        </h3>
+
+        <!-- Rating -->
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <!-- Price -->
+
+        <div class="flex items-center gap-2 mt-3">
+
+            <span class="font-bold text-lg">
+                ₹4,999
+            </span>
+
+            <span class="text-gray-400 line-through text-sm">
+                ₹6,999
+            </span>
+
+        </div>
+
+        <!-- Button -->
+<button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+
+    </div>
+
+</div>
+<!--1-->
+
+<div
+    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group"
+>
+
+    <!-- Image -->
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/products/product9.jpg"
+            alt="Premium Jacket"
+            class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-700"
+        >
+
+        <!-- Sale Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-gold text-white text-xs px-3 py-1 rounded-full"
+        >
+            Sale
+        </span>
+
+        <!-- Wishlist -->
+
+        <button
+            class="absolute top-3 right-3 bg-white w-9 h-9 rounded-full flex items-center justify-center shadow"
+        >
+            ♥
+        </button>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            Women
+        </p>
+
+        <h3 class="font-semibold text-sm md:text-base mt-1">
+            Flowing Pink Elegance
+        </h3>
+
+        <!-- Rating -->
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <!-- Price -->
+
+        <div class="flex items-center gap-2 mt-3">
+
+            <span class="font-bold text-lg">
+                ₹4,999
+            </span>
+
+            <span class="text-gray-400 line-through text-sm">
+                ₹6,999
+            </span>
+
+        </div>
+
+        <!-- Button -->
+
+        <button
+            class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition"
+        >
+            Add To Cart
+        </button>
+
+    </div>
+
+</div>
+        </div>
+        <!-- Mobile View All -->
+
+        <div class="mt-8 text-center md:hidden">
+
+            <a
+                href="./pages/shop.html"
+                class="text-gold font-medium"
+            >
+                View All Products
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- price and heading -->
+
+<!-- New Arrivals Section -->
+
+<section>
+    <!-- New Arrivals -->
+<section>
+    ...
+</section>
+
+<!-- SALE BANNER START -->
+<section class="py-10 lg:py-16">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div
+            class="bg-[#1E1A17] rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 items-center"
+        >
+
+            <!-- Left Content -->
+
+            <div class="p-6 md:p-8 lg:p-10">
+
+                <span class="text-gold uppercase tracking-[4px] text-sm">
+                    Limited Time Offer
+                </span>
+
+                <h2 class="text-white text-2xl md:text-4xl lg:text-5xl font-bold mt-4 leading-tight">
+                    Summer Collection Sale
+                </h2>
+
+                <p class="text-gray-300 mt-4 max-w-lg">
+                    Discover premium fashion pieces with exclusive seasonal discounts and luxury designs.
+                </p>
+
+                <div class="mt-8">
+
+                    <div class="text-gold text-4xl md:text-5xl font-bold">
+                        40% OFF
+                    </div>
+
+                    <p class="text-gray-400 mt-2">
+                        On Selected Products
+                    </p>
+
+                </div>
+
+                <a
+                    href="./pages/shop.html"
+                    class="inline-block mt-8 bg-gold text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-premium transition"
+                >
+                    Shop Now
+                </a>
+
+            </div>
+
+            <!-- Right Image -->
+
+            <div class="h-[240px] sm:h-[300px] md:h-[350px] lg:h-[380px] overflow-hidden">
+
+                <img
+                    src="./assets/images/banners/sale-banner.jpg"
+                    alt="Summer Sale"
+                    class="w-full h-full object-cover hover:scale-105 transition duration-700"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- SALE BANNER END -->
+</section>
+<!-- Next Section Starts Here -->
+
+<!-- Best Seller section start -->
+ <!-- Sale Banner -->
+</section>
+
+<!-- Best Sellers Starts Here -->
+<section class="py-10 lg:py-16 bg-[#F5F2EB]">
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+
+        <!-- Heading -->
+
+        <div class="text-center mb-10">
+
+            <span class="text-gold uppercase tracking-[4px] text-sm">
+                Customer Favorites
+            </span>
+
+            <h2 class="text-2xl md:text-4xl font-bold mt-2">
+                Best Sellers
+            </h2>
+
+            <p class="text-gray-500 mt-3 max-w-2xl mx-auto">
+                Discover our most loved fashion pieces chosen by thousands of customers.
+            </p>
+
+        </div>
+
+        <!-- Products -->
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            <!--1 -->
+            <div
+class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/bestsellers/best1.jpg"
+            alt="Best Seller"
+            class="w-full h-52 sm:h-64 object-cover transition duration-700 group-hover:scale-105"
+        >
+
+        <!-- Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-premium text-white text-xs px-3 py-1 rounded-full"
+        >
+            Best Seller
+        </span>
+
+    </div>
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            women
+        </p>
+
+        <h3 class="font-semibold mt-1 text-sm md:text-base">
+           Emerald Silk Dress 
+        </h3>
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <div class="mt-3 flex items-center gap-2">
+
+            <span class="font-bold text-lg">
+                ₹3,999
+            </span>
+
+        </div>
+
+         <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+
+    </div>
+
+</div>
+<!--2-->
+<div
+class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/bestsellers/best2.jpg"
+            alt="Best Seller"
+            class="w-full h-52 sm:h-64 object-cover transition duration-700 group-hover:scale-105"
+        >
+
+        <!-- Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-premium text-white text-xs px-3 py-1 rounded-full"
+        >
+            Best Seller
+        </span>
+
+    </div>
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            Women
+        </p>
+
+        <h3 class="font-semibold mt-1 text-sm md:text-base">
+           Maroon Couple Harmony 
+        </h3>
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <div class="mt-3 flex items-center gap-2">
+
+            <span class="font-bold text-lg">
+                ₹3,999
+            </span>
+
+        </div>
+
+         <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+
+    </div>
+
+</div>
+<!--3-->
+<div
+class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/bestsellers/best3.jpg"
+            alt="Best Seller"
+            class="w-full h-52 sm:h-64 object-cover transition duration-700 group-hover:scale-105"
+        >
+
+        <!-- Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-premium text-white text-xs px-3 py-1 rounded-full"
+        >
+            Best Seller
+        </span>
+
+    </div>
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            Men
+        </p>
+
+        <h3 class="font-semibold mt-1 text-sm md:text-base">
+           
+        </h3>
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <div class="mt-3 flex items-center gap-2">
+
+            <span class="font-bold text-lg">
+                ₹3,999
+            </span>
+
+        </div>
+
+         <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+    </div>
+
+</div>
+<!--4-->
+<div
+class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="./assets/images/bestsellers/best4.jpg"
+            alt="Best Seller"
+            class="w-full h-52 sm:h-64 object-cover transition duration-700 group-hover:scale-105"
+        >
+
+        <!-- Badge -->
+
+        <span
+            class="absolute top-3 left-3 bg-premium text-white text-xs px-3 py-1 rounded-full"
+        >
+            Best Seller
+        </span>
+
+    </div>
+
+    <div class="p-4">
+
+        <p class="text-xs text-gray-500 uppercase">
+            women
+        </p>
+
+        <h3 class="font-semibold mt-1 text-sm md:text-base">
+            Bohemian Pirate Fantasy 
+Dress 
+        </h3>
+
+        <div class="flex text-gold mt-2 text-sm">
+
+            ★★★★★
+
+        </div>
+
+        <div class="mt-3 flex items-center gap-2">
+
+            <span class="font-bold text-lg">
+                ₹3,999
+            </span>
+
+        </div>
+
+       <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
+        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
+    Add To Cart
+</button>
+    </div>
+
+</div>
+
+        </div>
+
+    </div>
+
+</section>
+            
+<!-- Best Seller section end -->
+
+<!-- why should we use this start  -->
+
+<!-- WHY CHOOSE VELORA -->
+<section class="py-10 lg:py-16">
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+
+        <!-- Heading -->
+
+        <div class="text-center mb-12">
+
+            <span class="text-gold uppercase tracking-[4px] text-sm">
+                Why Choose Us
+            </span>
+
+            <h2 class="text-2xl md:text-4xl font-bold mt-2">
+                Experience Fashion Excellence
+            </h2>
+
+            <p class="text-gray-500 mt-3 max-w-2xl mx-auto">
+                We bring premium fashion, secure shopping, and outstanding customer service together.
+            </p>
+
+        </div>
+
+        <!-- Features -->
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+
+            <!-- Feature 1 -->
+
+            <div class="bg-white rounded-2xl p-5 lg:p-6 text-center shadow-sm hover:shadow-xl transition">
+
+                <div class="w-14 h-14 mx-auto rounded-full bg-[#F5F2EB] flex items-center justify-center">
+
+                    <i data-lucide="gem" class="w-7 h-7 text-gold"></i>
+
+                </div>
+
+                <h3 class="font-semibold mt-5">
+                    Premium Quality
+                </h3>
+
+                <p class="text-gray-500 text-sm mt-3">
+                    Carefully selected materials and luxury craftsmanship.
+                </p>
+
+            </div>
+
+            <!-- Feature 2 -->
+
+            <div class="bg-white rounded-2xl p-5 lg:p-6 text-center shadow-sm hover:shadow-xl transition">
+
+                <div class="w-14 h-14 mx-auto rounded-full bg-[#F5F2EB] flex items-center justify-center">
+
+                    <i data-lucide="truck" class="w-7 h-7 text-gold"></i>
+
+                </div>
+
+                <h3 class="font-semibold mt-5">
+                    Fast Delivery
+                </h3>
+
+                <p class="text-gray-500 text-sm mt-3">
+                    Quick and reliable shipping across all locations.
+                </p>
+
+            </div>
+
+            <!-- Feature 3 -->
+
+            <div class="bg-white rounded-2xl p-5 lg:p-6 text-center shadow-sm hover:shadow-xl transition">
+
+                <div class="w-14 h-14 mx-auto rounded-full bg-[#F5F2EB] flex items-center justify-center">
+
+                    <i data-lucide="shield-check" class="w-7 h-7 text-gold"></i>
+
+                </div>
+
+                <h3 class="font-semibold mt-5">
+                    Secure Payment
+                </h3>
+
+                <p class="text-gray-500 text-sm mt-3">
+                    Safe and encrypted transactions every time.
+                </p>
+
+            </div>
+
+            <!-- Feature 4 -->
+
+            <div class="bg-white rounded-2xl p-5 lg:p-6 text-center shadow-sm hover:shadow-xl transition">
+
+                <div class="w-14 h-14 mx-auto rounded-full bg-[#F5F2EB] flex items-center justify-center">
+
+                    <i data-lucide="rotate-ccw" class="w-7 h-7 text-gold"></i>
+
+                </div>
+
+                <h3 class="font-semibold mt-5">
+                    Easy Returns
+                </h3>
+
+                <p class="text-gray-500 text-sm mt-3">
+                    Hassle-free returns and customer-friendly policies.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- why should we use this end   -->
+
+<!-- newsletter section  strat -->
+<section class="py-10 lg:py-16">
+
+    <div class="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8">
+
+        <div class="bg-[#1E1A17] rounded-3xl p-8 md:p-12 text-center">
+
+            <span class="text-gold uppercase tracking-[4px] text-sm">
+                Stay Connected
+            </span>
+
+            <h2 class="text-white text-2xl md:text-4xl font-bold mt-4">
+                Subscribe To Our Newsletter
+            </h2>
+
+            <p class="text-gray-300 mt-4 max-w-xl mx-auto">
+                Get updates on new arrivals, exclusive collections, and special offers.
+            </p>
+
+            <form class="mt-8 flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+
+                <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    class="flex-1 px-5 py-3 rounded-xl outline-none"
+                >
+
+                <button
+                    type="submit"
+                    class="bg-gold text-white px-8 py-3 rounded-xl hover:bg-white hover:text-premium transition"
+                >
+                    Subscribe
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- newsletter section   end  -->
+
+  
+    <footer>
+
+
+<!-- FOOTER START -->
+
+<footer class="bg-[#1E1A17] text-white mt-10">
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-12 lg:py-16">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+            <!-- Brand -->
+
+            <div>
+
+                <h2 class="text-3xl font-bold text-gold">
+                    VELORA
+                </h2>
+
+                <p class="text-gray-400 mt-4 leading-relaxed">
+                    Modern fashion for confident individuals. Discover premium clothing, footwear, accessories, and luxury collections.
+                </p>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div>
+
+                <h3 class="font-semibold text-lg">
+                    Quick Links
+                </h3>
+
+                <ul class="mt-5 space-y-3 text-gray-400">
+
+                    <li>
+                        <a href="index.html" class="hover:text-gold transition">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="shop.html" class="hover:text-gold transition">
+                            Shop
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="hover:text-gold transition">
+                            Collections
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="contact.html" class="hover:text-gold transition">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- Customer Support -->
+
+            <div>
+
+                <h3 class="font-semibold text-lg">
+                    Customer Support
+                </h3>
+
+                <ul class="mt-5 space-y-3 text-gray-400">
+
+                    <li>
+                        <a href="#" class="hover:text-gold transition">
+                            Shipping Policy
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="hover:text-gold transition">
+                            Return Policy
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="hover:text-gold transition">
+                            Privacy Policy
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="hover:text-gold transition">
+                            Terms & Conditions
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- Contact -->
+
+            <div>
+
+                <h3 class="font-semibold text-lg">
+                    Contact Us
+                </h3>
+
+                <ul class="mt-5 space-y-4 text-gray-400">
+
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="mail"></i>
+                        support@velora.com
+                    </li>
+
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="phone"></i>
+                        +91 98765 43210
+                    </li>
+
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="map-pin"></i>
+                        Fashion District, India
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+
+    <div class="border-t border-gray-800">
+
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-5">
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+
+                <p class="text-gray-500 text-sm text-center md:text-left">
+                    © 2026 Velora. All Rights Reserved.
+                </p>
+
+                <div class="flex items-center gap-5">
+
+                    <a href="#" class="hover:text-gold transition">
+                        <i data-lucide="facebook"></i>
+                    </a>
+
+                    <a href="#" class="hover:text-gold transition">
+                        <i data-lucide="instagram"></i>
+                    </a>
+
+                    <a href="#" class="hover:text-gold transition">
+                        <i data-lucide="twitter"></i>
+                    </a>
+
+                    <a href="#" class="hover:text-gold transition">
+                        <i data-lucide="youtube"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    </footer>
+
+    <!-- xxxxxxxxxFOOTER endxxxxxxxx ======== -->
+
+  
+<!-- MOBILE BOTTOM NAV -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t flex justify-around py-2 md:hidden z-50">
+
+    <a href="../index.html" class="text-center text-sm">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <a href="./pages/shop.html" class="text-center text-sm">
+        <i class="fa-solid fa-bag-shopping"></i>
+    </a>
+
+    <a href="./pages/cart.html" class="relative text-center text-sm">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">0</span>
+    </a>
+
+    <a href="./pawishlist.html" class="text-center text-sm">
+        <i class="fa-regular fa-heart"></i>
+    </a>
+
+    <a href="./profile.html" class="text-center text-sm">
+        <i class="fa-solid fa-user"></i>
+    </a>
+
+</nav>
+
+
+    <!-- JAVASCRIPT -->
+<script src="./assets/js/cart.js"></script>
+<script src="./assets/js/main.js"></script>
+<script src="../assets/js/logout.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+<script>let users = JSON.parse(localStorage.getItem("users")) || [];
+
+users.push(user);
+
+localStorage.setItem("users", JSON.stringify(users));</script>
+</body>
+
+<!--Mobile bottom-->
+
+</html>

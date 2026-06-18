@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Success | Velora</title>
+    <link rel="stylesheet" href="../src/output.css">
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Order Success | Velora</title>
+
+<link rel="stylesheet" href="../src/output.css">
+
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#F5F2EB] via-white to-[#F5F2EB]">
+
+    <div class="text-center bg-white p-10 md:p-12 rounded-3xl shadow-2xl max-w-md w-full border border-gray-100">
+
+        <!-- ICON -->
+        <div class="w-20 h-20 mx-auto flex items-center justify-center rounded-full bg-green-100 text-green-600 text-4xl mb-5">
+            ✔
+        </div>
+
+        <!-- TITLE -->
+        <h1 class="text-3xl font-bold text-gray-800">
+            Order Placed!
+        </h1>
+
+        <p class="mt-3 text-gray-500 leading-relaxed">
+            Your order has been successfully placed.  
+            We are preparing it for shipment 
+        </p>
+
+        <!-- ORDER ID (optional future use) -->
+        <div class="mt-5 text-sm text-gray-400">
+            Order ID: #<span id="orderId">VEL-2026-001</span>
+        </div>
+ 
+
+    <!-- ORDER SUMMARY -->
+    <div class="mt-6 border rounded-xl p-4 bg-gray-50">
+
+        <h2 class="font-semibold mb-3 text-gray-700">
+            Order Summary
+        </h2>
+
+        <div id="orderPreview" class="space-y-2 text-sm text-gray-600"></div>
+
+        <hr class="my-3">
+
+        <div class="flex justify-between font-bold text-gray-800">
+            <span>Total</span>
+            <span id="orderTotal">₹0</span>
+        </div>
+
+    </div>
+
+        <!-- BUTTON -->
+        <a href="../index.html"
+           class="inline-block mt-8 bg-[#1E1A17] text-white px-8 py-3 rounded-full font-medium hover:bg-[#cba75e] transition duration-300">
+            Continue Shopping
+        </a>
+
+
+
+
+</div>
+
+<script>
+function loadLastOrder() {
+
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    let lastOrder = orders[orders.length - 1];
+
+    const preview = document.getElementById("orderPreview");
+    const total = document.getElementById("orderTotal");
+
+    if (!lastOrder || !lastOrder.items) {
+        preview.innerHTML = "<p>No order found</p>";
+        return;
+    }
+
+    let sum = 0;
+
+    lastOrder.items.forEach(item => {
+
+        let qty = item.quantity || 1;
+        let itemTotal = item.price * qty;
+
+        sum += itemTotal;
+
+        preview.innerHTML += `
+            <div class="flex justify-between">
+                <span>${item.name} × ${qty}</span>
+                <span>₹${itemTotal}</span>
+            </div>
+        `;
+    });
+
+    total.innerText = "₹" + sum;
+}
+
+loadLastOrder();
+</script>
+
+</body>
+</html>
+
+
+   

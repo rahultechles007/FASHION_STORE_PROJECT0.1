@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Profile | Velora</title>
+    <link rel="stylesheet" href="../src/output.css">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<style>
+
+@keyframes fadeInUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.animate-fade{
+    animation:fadeInUp .7s ease;
+}
+
+</style>
+
+<body class="bg-[#F5F2EB]">
+
+   <div class="max-w-6xl mx-auto px-4 md:px-6 py-10">
+
+    <!-- PROFILE CARD -->
+    <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 md:p-8 mb-8">
+
+        <div class="flex flex-col md:flex-row items-center gap-8">
+
+            <!-- PROFILE IMAGE -->
+            <div class="relative">
+
+                <img
+                    id="profileImage"
+                    src="https://ui-avatars.com/api/?name=User&background=C8A96B&color=fff&size=250"
+                    class="w-36 h-36 rounded-full object-cover border-4 border-[#C8A96B] shadow-lg">
+
+                <label
+                    for="uploadPhoto"
+                    class="absolute bottom-2 right-2 bg-[#C8A96B] text-white w-10 h-10 rounded-full flex items-center justify-center cursor-pointer shadow-md hover:scale-110 transition">
+
+                    <i class="fa-solid fa-camera"></i>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="uploadPhoto"
+                    accept="image/*"
+                    class="hidden">
+
+            </div>
+
+            <!-- USER DETAILS -->
+            <div class="flex-1 text-center md:text-left">
+
+                <h1
+                    id="userName"
+                    class="text-3xl md:text-4xl font-bold text-[#1E1A17]">
+                    Welcome Back
+                </h1>
+
+                <p
+                    id="userEmail"
+                    class="text-gray-500 mt-2 text-lg">
+                </p>
+
+                <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-6">
+
+                    <button
+                        class="bg-[#1E1A17] text-white px-6 py-3 rounded-xl hover:bg-[#C8A96B] hover:text-black transition duration-300">
+
+                        <i class="fa-solid fa-pen-to-square mr-2"></i>
+                        Edit Profile
+
+                    </button>
+
+                    <button
+                        onclick="logout()"
+                        class="bg-red-500 text-white px-6 py-3 rounded-xl hover:bg-red-600 transition">
+
+                        <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                        Logout
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+
+        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl hover:-translate-y-1 transition">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+                    <p class="text-gray-500 text-sm">
+                        Orders
+                    </p>
+
+                    <h2 id="totalOrders"
+                        class="text-3xl font-bold mt-2">
+                        0
+                    </h2>
+                </div>
+
+                <i class="fa-solid fa-box text-3xl text-[#C8A96B]"></i>
+
+            </div>
+
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl hover:-translate-y-1 transition">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+                    <p class="text-gray-500 text-sm">
+                        Wishlist
+                    </p>
+
+                    <h2 id="wishlistTotal"
+                        class="text-3xl font-bold mt-2">
+                        0
+                    </h2>
+                </div>
+
+                <i class="fa-solid fa-heart text-3xl text-red-500"></i>
+
+            </div>
+
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl hover:-translate-y-1 transition">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+                    <p class="text-gray-500 text-sm">
+                        Total Spent
+                    </p>
+
+                    <h2 id="totalSpent"
+                        class="text-3xl font-bold mt-2">
+                        ₹0
+                    </h2>
+                </div>
+
+                <i class="fa-solid fa-indian-rupee-sign text-3xl text-green-600"></i>
+
+            </div>
+
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl hover:-translate-y-1 transition">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+                    <p class="text-gray-500 text-sm">
+                        Member Since
+                    </p>
+
+                    <h2 class="text-2xl font-bold mt-2">
+                        2025
+                    </h2>
+                </div>
+
+                <i class="fa-solid fa-crown text-3xl text-yellow-500"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RECENT ORDERS -->
+    <div class="bg-white rounded-3xl shadow-xl p-6 md:p-8">
+
+        <div class="flex justify-between items-center mb-6">
+
+            <h2 class="text-2xl font-bold flex items-center gap-2">
+
+                <i class="fa-solid fa-clock-rotate-left text-[#C8A96B]"></i>
+                Recent Orders
+
+            </h2>
+
+            <a
+                href="./orders.html"
+                class="text-[#C8A96B] font-semibold hover:underline">
+
+                View All
+
+            </a>
+
+        </div>
+
+        <div
+            id="myOrders"
+            class="space-y-4">
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../assets/js/logout.js"></script>
+<script>let user = JSON.parse(localStorage.getItem("currentUser"));
+
+if (!user) {
+    window.location.href = "./login.html";
+}</script>
+</body>
+</html>
