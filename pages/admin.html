@@ -194,22 +194,12 @@ class="border p-3 rounded-xl">
         class="border p-3 rounded-xl w-full">
 
  
-   <div class="flex items-center">
-    <button
-        id="pImage"
-        type="button"
-        class="border p-3 rounded-xl w-full"
-    >
-        Browse...
-    </button>
     <input
-        id="pImageInput"
+        id="pImage"
         type="file"
-        class="hidden"
         placeholder="product1.jpg"
-    >
-</div>
->
+        class="border p-3 rounded-xl w-full">
+
 <input
     id="pDescription"
     placeholder="Product Description"
@@ -670,14 +660,6 @@ loadProducts();
 loadUsers();
 loadChart();
 
-</script>
-<script>
-    document.getElementById('pImage').addEventListener('click', () => {
-    document.getElementById('pImageInput').click();
-});
-document.getElementById('pImageInput').addEventListener('change', (e) => {
-    document.getElementById('pImage').textContent = e.target.value.split('/').pop();
-});
 </script>
 
 </body>
