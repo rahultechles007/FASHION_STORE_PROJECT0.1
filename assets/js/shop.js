@@ -1,157 +1,158 @@
+const productGrid =
+document.getElementById("productGrid");
 
-// PRODUCTS (FROM LOCALSTORAGE)
+const searchInput =
+document.getElementById("searchInput");
 
-let products = JSON.parse(localStorage.getItem("products")) || [];
+const filterButtons =
+document.querySelectorAll(".filter-btn");
 
-// 
- ELEMENTS
-
-const productGrid = document.getElementById("productGrid");
-const searchInput = document.getElementById("searchInput");
-const filterButtons = document.querySelectorAll(".filter-btn");
-
-// STATE
+let products =
+JSON.parse(localStorage.getItem("products")) || [];
 
 let activeCategory = "All";
 
-//  LOAD CART + WISHLIST
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-//  DISPLAY PRODUCTS
-
-function displayProducts(list) {
+function displayProducts(productList) {
 
     productGrid.innerHTML = "";
 
-    if (!list.length) {
+    if(productList.length === 0){
+
         productGrid.innerHTML = `
-        <div class="col-span-full text-center py-10 text-gray-500">
-            No products found
-        </div>`;
+        <div class="col-span-full text-center py-10">
+            No Products Available
+        </div>
+        `;
+
         return;
     }
 
-    list.forEach(product => {
+    productList.forEach(product => {
 
         productGrid.innerHTML += `
-        <div class="bg-white rounded-2xl shadow overflow-hidden flex flex-col">
 
-            <img src="${product.image}" class="w-full h-52 object-cover">
+<div class="bg-white rounded-2xl shadow hover:shadow-xl transition overflow-hidden flex flex-col h-[500px]">
 
-            <div class="p-4 flex flex-col flex-1">
+    <div class="h-64 overflow-hidden">
 
-                <p class="text-xs text-gray-500 uppercase">
-                    ${product.category}
-                </p>
+        <img
+        src="${product.image}"
+        alt="${product.name}"
+        class="w-full h-full object-cover">
 
-                <h3 class="font-semibold mt-1">
-                    ${product.name}
-                </h3>
+    </div>
 
-                <p class="text-gray-500 text-xs mt-1">
-                    ${product.description || "No description available"}
-                </p>
+    <div class="p-4 flex flex-col flex-1">
 
-                <div class="flex gap-2 mt-3">
-                    <span class="font-bold">₹${Number(product.price) || 0}</span>
-                </div>
+     <p class="text-xs uppercase text-gray-500">
+            ${product.name}
+        </p
 
-                <!-- BUTTONS -->
-                <div class="flex gap-2 mt-4">
+        <p class="text-xs uppercase text-gray-500">
+            ${product.category}
+        </p>
 
-                    <!-- VIEW -->
-                    <button
-                        onclick="viewProduct('${product.id}')"
-                        class="flex-1 border border-[#C8A96B] text-[#C8A96B] py-2 rounded-xl text-sm"
-                        type="button"
-                    >
-                        View
-                    </button>
+        <h3 class="font-bold text-lg mt-2">
+            ${product.name}
+        </h3>
 
-                    <!-- ADD TO CART -->
-                    <button
-                        onclick="addToCart('${product.id}')"
-                        class="flex-1 bg-[#1E1A17] text-white py-2 rounded-xl text-sm"
-                        type="button"
-                    >
-                        Cart
-                    </button>
+        <div class="flex items-center gap-1 mt-2">
 
-                </div>
+            <i class="fa-solid fa-star text-[#C8A96B]"></i>
+            <span>
+                ${product.rating || 4.5}
+            </span>
 
-            </div>
-        </div>`;
+        </div>
+
+        <p class="text-sm text-gray-500 mt-2 flex-1">
+
+            ${product.description || ""}
+
+        </p>
+
+        <div class="mt-3">
+
+            <span class="text-2xl font-bold text-[#C8A96B]">
+
+                ₹${product.price}
+
+            </span>
+
+        </div>
+
+        <div class="flex gap-2 mt-4">
+
+            <button
+            onclick="viewProduct('${product.id}')"
+            class="flex-1 border border-[#C8A96B] text-[#C8A96B] py-2 rounded-xl">
+
+                <i class="fa-solid fa-eye mr-2"></i>
+
+                View
+
+            </button>
+
+           <button
+onclick="addToCart(
+'${product.name}',
+${product.price},
+'${product.image}',
+'${product.category}',
+${product.rating || 4.5},
+'${product.description || ""}'
+)"
+class="flex-1 bg-[#1E1A17] text-white py-2 rounded-xl">
+
+Add Cart
+
+</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+`;
     });
 }
 
-// ==============================
-function applyFilters() {
-
-    const searchValue = searchInput?.value.toLowerCase() || "";
-
-    const filtered = products.filter(product => {
-
-        const categoryMatch =
-            activeCategory === "All" ||
-            product.category === activeCategory;
-
-        const searchMatch =
-            product.name.toLowerCase().includes(searchValue);
-
-        return categoryMatch && searchMatch;
-    });
-
-    displayProducts(filtered);
-}
-
-searchInput?.addEventListener("input", applyFilters);
-
-// ============================== CATEGORY FILTER
-
-filterButtons.forEach(btn => {
-
-    btn.addEventListener("click", function () {
-
-        filterButtons.forEach(b => {
-            b.classList.remove("bg-[#1E1A17]", "text-white");
-            b.classList.add("bg-white");
-        });
-
-        this.classList.add("bg-[#1E1A17]", "text-white");
-
-        activeCategory = this.innerText.trim();
-
-        applyFilters();
-    });
-});
-
-// ADD TO CART (FIXED ROOT ISSUE)
-
-function addToCart(name,price,image){
+function addToCart(productId) {
 
     let cart =
     JSON.parse(localStorage.getItem("cart")) || [];
 
-    let existing =
-    cart.find(item => item.name === name);
+    let product =
+    products.find(
+        p => String(p.id) === String(productId)
+    );
 
-    if(existing){
+    if (!product) {
+        alert("Product not found");
+        return;
+    }
+
+    let existing =
+    cart.find(
+        item => String(item.id) === String(product.id)
+    );
+
+    if (existing) {
 
         existing.quantity++;
 
-    }else{
+    } else {
 
         cart.push({
 
-            id: Date.now(),
-
-            name,
-
-            price,
-
-            image,
-
+            id: product.id,
+            name: product.name,
+            image: product.image,
+            category: product.category,
+            description: product.description,
+            rating: product.rating || 4.5,
+            price: Number(product.price),
             quantity: 1
 
         });
@@ -164,10 +165,8 @@ function addToCart(name,price,image){
 
     updateCartCount();
 
-    alert("Added To Cart");
+    alert(product.name + " added to cart");
 }
-
-// CART COUNT
 
 function updateCartCount(){
 
@@ -180,24 +179,65 @@ function updateCartCount(){
         0
     );
 
-    let badge =
-    document.getElementById("cartCount");
-
-    if(badge){
+    document
+    .querySelectorAll("#cartCount")
+    .forEach(badge=>{
 
         badge.innerText = count;
-    }
+    });
 }
 
-updateCartCount();
+function viewProduct(id){
 
-// VIEW PRODUCT
+    localStorage.setItem(
+        "selectedProduct",
+        id
+    );
 
-function viewProduct(id) {
-    window.location.href = `product.html?id=${id}`;
+    window.location.href =
+    `product.html?id=${id}`;
 }
 
-// INIT
+function applyFilters(){
+
+    let search =
+    searchInput.value.toLowerCase();
+
+    let filtered =
+    products.filter(product=>{
+
+        let categoryMatch =
+        activeCategory==="All" ||
+        product.category===activeCategory;
+
+        let searchMatch =
+        product.name.toLowerCase()
+        .includes(search);
+
+        return categoryMatch &&
+        searchMatch;
+    });
+
+    displayProducts(filtered);
+}
+
+searchInput?.addEventListener(
+    "input",
+    applyFilters
+);
+
+filterButtons.forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+        activeCategory =
+        btn.innerText.trim();
+
+        applyFilters();
+    });
+
+});
 
 displayProducts(products);
+
 updateCartCount();

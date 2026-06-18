@@ -1,116 +1,191 @@
-// ================= CART DATA =================
 
-let cart =
-JSON.parse(localStorage.getItem("cart")) || [];
+// ==========================
+// ADD TO CART
+// ==========================
 
-const cartItems =
-document.getElementById("cartItems");
+function addToCart(
+    name,
+    price,
+    image,
+    category = "Fashion",
+    rating = 4.5,
+    description = ""
+) {
 
-const totalPrice =
-document.getElementById("totalPrice");
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
 
-const totalPrice2 =
-document.getElementById("totalPrice2");
+    let existing =
+    cart.find(item => item.name === name);
 
+    if(existing){
 
-// ================= DISPLAY CART =================
+        existing.quantity++;
 
-function renderCart(){
+    }else{
+
+        cart.push({
+
+            id: Date.now(),
+
+            name,
+            price: Number(price),
+            image,
+            category,
+            rating,
+            description,
+            quantity: 1
+
+        });
+    }
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+
+    alert(name + " Added To Cart");
+}
+
+updateCartCount();
+// ==========================
+// CART COUNT
+// ==========================
+
+function updateCartCount() {
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+    let count =
+    cart.reduce(
+        (total,item)=>total + item.quantity,
+        0
+    );
+
+    document
+    .querySelectorAll("#cartCount")
+    .forEach(badge => {
+
+        badge.innerText = count;
+    });
+}
+
+// ==========================
+// CART PAGE
+// ==========================
+
+function loadCart() {
+
+    const cartItems =
+    document.getElementById("cartItems");
 
     if(!cartItems) return;
 
-    cartItems.innerHTML = "";
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
 
     let total = 0;
+
+    cartItems.innerHTML = "";
 
     if(cart.length === 0){
 
         cartItems.innerHTML = `
 
-        <div class="bg-white rounded-2xl p-8 text-center shadow">
+        <div class="bg-white p-10 rounded-2xl text-center">
 
             <i class="fa-solid fa-cart-shopping text-5xl text-gray-300"></i>
 
-            <h2 class="text-xl font-bold mt-4">
-                Your Cart Is Empty
+            <h2 class="text-2xl font-bold mt-4">
+                Cart Is Empty
             </h2>
 
-            <a
-                href="./shop.html"
-                class="inline-block mt-5 bg-[#C8A96B] text-white px-6 py-3 rounded-xl"
-            >
-                Continue Shopping
-            </a>
-
         </div>
-        `;
 
-        totalPrice.innerText = 0;
-        totalPrice2.innerText = 0;
+        `;
 
         return;
     }
 
-    cart.forEach((item,index)=>{
+    cart.forEach(item => {
 
         total += item.price * item.quantity;
 
         cartItems.innerHTML += `
 
-        <div class="bg-white rounded-2xl shadow p-4">
+        <div class="bg-white rounded-2xl shadow p-4 flex gap-4">
 
-            <div class="flex flex-col md:flex-row gap-4 items-center">
+         <img
+src="${item.image}"
+alt="${item.name}"
+class="w-32 h-32 object-cover rounded-xl border">
+            <div class="flex-1">
 
-                <img
-                    src="${item.image}"
-                    class="w-28 h-28 rounded-xl object-cover"
-                >
+                <h3 class="font-bold text-xl">
 
-                <div class="flex-1">
+                    ${item.name}
 
-                    <h3 class="font-bold text-lg">
-                        ${item.name}
-                    </h3>
+                </h3>
 
-                    <p class="text-[#C8A96B] font-semibold mt-2">
-                        ₹${item.price}
-                    </p>
+                <p class="text-sm text-gray-500">
 
-                    <div class="flex items-center gap-3 mt-3">
+                    ${item.category}
 
-                        <button
-                            onclick="changeQty(${index},-1)"
-                            class="bg-gray-200 px-3 py-1 rounded"
-                        >
-                            -
-                        </button>
+                </p>
 
-                        <span class="font-semibold">
-                            ${item.quantity}
-                        </span>
+                <p class="text-sm mt-2 text-gray-600">
 
-                        <button
-                            onclick="changeQty(${index},1)"
-                            class="bg-gray-200 px-3 py-1 rounded"
-                        >
-                            +
-                        </button>
+                    ${item.description || ""}
 
-                    </div>
+                </p>
+
+                <div class="flex items-center gap-2 mt-2">
+
+                    <i class="fa-solid fa-star text-[#C8A96B]"></i>
+
+                    ${item.rating}
 
                 </div>
 
-                <div class="text-right">
+                <div class="mt-3 text-xl font-bold text-[#C8A96B]">
 
-                    <p class="font-bold text-lg">
-                        ₹${item.price * item.quantity}
-                    </p>
+                    ₹${item.price}
+
+                </div>
+
+                <div class="flex items-center gap-3 mt-3">
 
                     <button
-                        onclick="removeItem(${index})"
-                        class="text-red-500 mt-2"
-                    >
-                        Remove
+                    onclick="changeQty('${item.id}',-1)"
+                    class="w-8 h-8 bg-gray-200 rounded">
+
+                        -
+
+                    </button>
+
+                    <span>
+
+                        ${item.quantity}
+
+                    </span>
+
+                    <button
+                    onclick="changeQty('${item.id}',1)"
+                    class="w-8 h-8 bg-gray-200 rounded">
+
+                        +
+
+                    </button>
+
+                    <button
+                    onclick="removeItem('${item.id}')"
+                    class="ml-auto text-red-500">
+
+                        <i class="fa-solid fa-trash"></i>
+
                     </button>
 
                 </div>
@@ -122,68 +197,72 @@ function renderCart(){
         `;
     });
 
-    totalPrice.innerText = total;
-    totalPrice2.innerText = total;
+    document.getElementById("totalPrice").innerText =
+    total;
+
+    document.getElementById("totalPrice2").innerText =
+    total;
+}
+
+// ==========================
+// QUANTITY
+// ==========================
+
+function changeQty(id,value){
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.forEach(item => {
+
+        if(String(item.id) === String(id)){
+
+            item.quantity += value;
+
+            if(item.quantity < 1){
+
+                item.quantity = 1;
+            }
+        }
+    });
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    loadCart();
 
     updateCartCount();
 }
 
+// ==========================
+// REMOVE
+// ==========================
 
-// ================= QUANTITY =================
+function removeItem(id){
 
-function changeQty(index,value){
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
 
-    cart[index].quantity += value;
-
-    if(cart[index].quantity <= 0){
-
-        cart.splice(index,1);
-    }
+    cart =
+    cart.filter(
+        item => String(item.id) !== String(id)
+    );
 
     localStorage.setItem(
         "cart",
         JSON.stringify(cart)
     );
 
-    renderCart();
+    loadCart();
+
+    updateCartCount();
 }
 
+// ==========================
+// INIT
+// ==========================
 
-// ================= REMOVE =================
-
-function removeItem(index){
-
-    cart.splice(index,1);
-
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-    renderCart();
-}
-
-
-// ================= COUNT =================
-
-function updateCartCount(){
-
-    let count =
-    cart.reduce(
-        (sum,item)=>sum+item.quantity,
-        0
-    );
-
-    const badge =
-    document.getElementById("cartCount");
-
-    if(badge){
-
-        badge.innerText = count;
-    }
-}
-
-
-// ================= INIT =================
-
-renderCart();
+updateCartCount();
+loadCart();

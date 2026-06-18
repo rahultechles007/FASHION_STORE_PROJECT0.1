@@ -7,107 +7,136 @@
 
     <link rel="stylesheet" href="./src/output.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="bg-beige text-premium pb-20 md:pb-0">
 
     <!-- HEADER -->
-    <header>
-    <header>
-<nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+<!-- ===========================
+HEADER START
+=========================== -->
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<header class="bg-white sticky top-0 z-50 shadow-sm">
 
-    <div class="flex items-center justify-between h-20">
+    <!-- TOP HEADER -->
+    <div class="max-w-7xl mx-auto px-4 lg:px-6">
 
-      <!-- Logo -->
-      <a href="../index.html" class="flex items-center gap-2 text-3xl font-bold">
-                    <i class="fa-solid fa-gem text-[#C8A96B]"></i>
-                    <span>
-                        VE<span class="text-[#C8A96B]">L</span>ORA
+        <div class="flex items-center justify-between py-4">
+
+            <!-- LOGO -->
+            <a href="index.html"
+                class="flex items-center gap-3">
+
+                <div class="w-12 h-12 rounded-full bg-[#C8A96B]/20 flex items-center justify-center">
+
+                    <i class="fa-solid fa-gem text-[#C8A96B] text-xl"></i>
+
+                </div>
+
+                <h1 class="text-3xl font-bold tracking-widest">
+
+                    VE<span class="text-[#C8A96B]">L</span>ORA
+
+                </h1>
+
+            </a>
+
+            <!-- RIGHT SECTION -->
+            <div class="flex items-center gap-5">
+
+                <div class="hidden md:flex items-center gap-2">
+
+                    <i class="fa-solid fa-user text-[#C8A96B]"></i>
+
+                    <span id="headerUsername">
+
+                        Guest
+
                     </span>
+
+                </div>
+
+                <a href="./pages/login.html"
+                    class="hidden md:block hover:text-[#C8A96B]">
+
+                    Login
+
                 </a>
 
+                <!-- WISHLIST -->
+                <a href="./pages/wishlist.html"
+                    class="relative">
 
-      <!-- Desktop Menu -->
-      <ul class="hidden md:flex items-center gap-8 font-medium text-sm">
+                    <i class="fa-regular fa-heart text-xl"></i>
 
-        <li><a href="index.html" class="hover:text-gold transition">Home</a></li>
-        <li><a href="./pages/shop.html" class="hover:text-gold transition">Shop</a></li>
-        <li><a href="./pages/wishlist.html" class="hover:text-gold transition">Wishlist</a></li>
-        <li><a href="./pages/cart.html" class="hover:text-gold transition">Cart</a></li>
-      
+                    <span id="wishlistCount"
+                        class="absolute -top-2 -right-2 bg-[#C8A96B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
 
-      </ul>
+                        0
 
-      <!-- Desktop Icons -->
-      <div class="hidden md:flex items-center gap-5">
+                    </span>
 
-        <!-- Cart -->
-        <a href="./pages/cart.html" class="relative">
-          <i class="fa-solid fa-cart-shopping"></i>
+                </a>
 
-          <span id="cartCount"
-                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-            0
-          </span>
-        </a>
+                <!-- CART -->
+                <a href="./pages/cart.html"
+                    class="relative">
 
-        <!-- Wishlist -->
-        <a href="./pages/wishlist.html" class="relative">
-          <i class="fa-regular fa-heart text-lg"></i>
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
 
-          <span id="wishlistCount"
-                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
-            0
-          </span>
-        </a>
+                    <span id="cartCount"
+                        class="absolute -top-2 -right-2 bg-[#C8A96B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
 
-        <!-- User -->
-        <a href="./pages/profile.html">
-          <i data-lucide="user"></i>
-        </a>
+                        0
 
-        <!-- Logout -->
-        <button onclick="logout()" class="text-red-500 text-sm font-medium">
-          Logout
-        </button>
+                    </span>
 
-      </div>
+                </a>
 
-      <!-- Mobile Button -->
-      <button id="menuBtn" class="md:hidden p-2">
-        <i data-lucide="menu"></i>
-      </button>
+                <!-- MOBILE MENU -->
+                <button
+                    id="openMenu"
+                    class="lg:hidden">
+                    <i class="fa-solid fa-bars text-xl"></i>
+
+                <!-- Overlay -->
+<div id="mobileOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 
+    <!-- NAVBAR -->
+    <div class="hidden lg:block border-t">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between py-4">
+        <nav class="flex items-center gap-8 font-medium">
+          <a href="index.html" class="hover:text-[#C8A96B]">Home</a>
+          <a href="./pages/shop.html" class="hover:text-[#C8A96B]">Category</a>
+          <a href="#new-arrivals" class="hover:text-[#C8A96B]">New Arrivals</a>
+          <a href="#best-sellers" class="hover:text-[#C8A96B]">Best Sellers</a>
+          <a href="#offers" class="hover:text-[#C8A96B]">Offers</a>
+          <a href="./pages/shop.html" class="hover:text-[#C8A96B]">Shop</a>
+        </nav>
+        <!-- SEARCH -->
+        <a href="./pages/shop.html" class="flex items-center border rounded-full overflow-hidden">
+          <input type="text" placeholder="Search Products..." readonly class="w-80 px-4 py-2 outline-none cursor-pointer" />
+          <span class="px-4 text-[#C8A96B]"><i class="fa-solid fa-magnifying-glass"></i></span>
+        </a>
+      </div>
+    </div>
   </div>
-</nav>
-<div id="mobileMenu"
-     class="fixed top-0 right-[-100%] w-72 h-screen bg-white shadow-2xl z-[999] transition-all duration-500 md:hidden">
 
-  <div class="flex items-center justify-between p-5 border-b">
-    <h2 class="text-xl font-bold text-gold">VELORA</h2>
-    <button id="closeMenu">
-      <i data-lucide="x"></i>
-    </button>
-  </div>
+</header>
 
-  <ul class="flex flex-col p-6 space-y-6 font-medium">
-
-    <li><a href="index.html">Home</a></li>
-    <li><a href="./pages/shop.html">Shop</a></li>
-    <li><a href="./pages/wishlist.html">Wishlist</a></li>
-    <li><a href="./pages/cart.html">Cart</a></li>
-    <li><a href="./pages/login.html">Login</a></li>
-    <li><a href="./pages/register.html">Register</a></li>
-
-  </ul>
-
-</div>
-    </header>
+<!-- ===========================
+HEADER END
+=========================== -->
+   
 
     
 
@@ -1240,7 +1269,7 @@ Skirt Look)
 
 <!-- Best Seller section start -->
  <!-- Sale Banner -->
-</section>
+
 
 <!-- Best Sellers Starts Here -->
 <section class="py-10 lg:py-16 bg-[#F5F2EB]">
@@ -1270,9 +1299,9 @@ Skirt Look)
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             <!--1 -->
             <div
-class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+           class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
 
-    <div class="relative overflow-hidden">
+          <div class="relative overflow-hidden">
 
         <img
             src="./assets/images/bestsellers/best1.jpg"
@@ -1290,7 +1319,7 @@ class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition
 
     </div>
 
-    <div class="p-4">
+        <div class="p-4">
 
         <p class="text-xs text-gray-500 uppercase">
             women
@@ -1314,12 +1343,25 @@ class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition
 
         </div>
 
-         <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
-        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
-    Add To Cart
-</button>
+         <div class="flex gap-2 mt-4">
 
-    </div>
+                <button
+                onclick="viewIndexProduct(
+                'Emerald Silk Dress',
+                3999,
+                './assets/images/bestsellers/best1.jpg',
+                'Women',
+                4.9
+                )"
+            class="flex-1 border border-[#C8A96B] text-[#C8A96B] py-2.5 rounded-xl hover:bg-[#C8A96B] hover:text-white transition">
+
+                <i class="fa-solid fa-eye mr-2"></i>
+                View
+
+            </button>
+</div>
+
+</div>
 
 </div>
 <!--2-->
@@ -1368,15 +1410,30 @@ class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition
 
         </div>
 
-         <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
-        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
-    Add To Cart
-</button>
+  <div class="flex gap-2 mt-4">
 
-    </div>
+    <button
+    onclick="viewIndexProduct(
+    'Maroon Couple Harmony',
+3999,
+'./assets/images/bestsellers/best2.jpg',
+'Women',
+4.8
+)"
+    class="flex-1 border border-[#C8A96B] text-[#C8A96B] py-2.5 rounded-xl hover:bg-[#C8A96B] hover:text-white transition">
+
+        <i class="fa-solid fa-eye mr-2"></i>
+        View
+
+    </button>
+
+</div>
+
+ </div>
 
 </div>
 <!--3-->
+
 <div
 class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
 
@@ -1401,7 +1458,7 @@ class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition
     <div class="p-4">
 
         <p class="text-xs text-gray-500 uppercase">
-            Men
+            women
         </p>
 
         <h3 class="font-semibold mt-1 text-sm md:text-base">
@@ -1421,17 +1478,29 @@ class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition
             </span>
 
         </div>
+<div class="flex gap-2 mt-4">
 
-         <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
-        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
-    Add To Cart
-</button>
-    </div>
+    <button
+    onclick="viewIndexProduct(
+    'Royal Men Suit',
+3999,
+'./assets/images/bestsellers/best3.jpg',
+'Men',
+4.7
+    )"
+    class="flex-1 border border-[#C8A96B] text-[#C8A96B] py-2.5 rounded-xl hover:bg-[#C8A96B] hover:text-white transition">
 
+        <i class="fa-solid fa-eye mr-2"></i>
+        View
+
+    </button>
+
+</div>
+</div>
 </div>
 <!--4-->
 <div
-class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
 
     <div class="relative overflow-hidden">
 
@@ -1459,7 +1528,7 @@ class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition
 
         <h3 class="font-semibold mt-1 text-sm md:text-base">
             Bohemian Pirate Fantasy 
-Dress 
+           Dress 
         </h3>
 
         <div class="flex text-gold mt-2 text-sm">
@@ -1476,17 +1545,28 @@ Dress
 
         </div>
 
-       <button onclick="addToCart('Premium Leather Jacket', 4999, './assets/images/products/product1.jpg')"
-        class="w-full mt-4 bg-premium text-white py-2.5 rounded-xl hover:bg-gold transition">
-    Add To Cart
-</button>
-    </div>
+   <div class="flex gap-2 mt-4">
+
+    <button
+    onclick="viewIndexProduct(
+   'Bohemian Pirate Fantasy Dress',
+3999,
+'./assets/images/bestsellers/best4.jpg',
+'Women',
+4.9
+    )"
+    class="flex-1 border border-[#C8A96B] text-[#C8A96B] py-2.5 rounded-xl hover:bg-[#C8A96B] hover:text-white transition">
+
+        <i class="fa-solid fa-eye mr-2"></i>
+        View
+
+    </button>
+
+   
 
 </div>
-
-        </div>
-
-    </div>
+</div>
+  </div>
 
 </section>
             
@@ -1847,7 +1927,7 @@ Dress
         <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">0</span>
     </a>
 
-    <a href="./pawishlist.html" class="text-center text-sm">
+    <a href="./wishlist.html" class="text-center text-sm">
         <i class="fa-regular fa-heart"></i>
     </a>
 
@@ -1856,21 +1936,92 @@ Dress
     </a>
 
 </nav>
-
+<style>
+    
+</style>
 
     <!-- JAVASCRIPT -->
 <script src="./assets/js/cart.js"></script>
 <script src="./assets/js/main.js"></script>
 <script src="../assets/js/logout.js"></script>
-    <script>
-        lucide.createIcons();
-    </script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+   
 <script>let users = JSON.parse(localStorage.getItem("users")) || [];
 
 users.push(user);
 
 localStorage.setItem("users", JSON.stringify(users));</script>
+
+<!-- mobile overlay -->
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const openBtn = document.getElementById("openMenu");
+    const closeBtn = document.getElementById("closeMenu");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const overlay = document.getElementById("mobileOverlay");
+
+    if (openBtn && mobileMenu && overlay) {
+      openBtn.addEventListener("click", () => {
+        mobileMenu.style.left = "0";
+        overlay.classList.remove("hidden");
+      });
+    }
+
+    if (closeBtn && overlay) {
+      closeBtn.addEventListener("click", () => {
+        mobileMenu.style.left = "-320px";
+        overlay.classList.add("hidden");
+      });
+    }
+
+    if (overlay) {
+      overlay.addEventListener("click", () => {
+        mobileMenu.style.left = "-320px";
+        overlay.classList.add("hidden");
+      });
+    }
+  });
+</script>
+<!-- mobile overlay -->
+
+<script>
+
+function viewIndexProduct(
+    name,
+    price,
+    image,
+    category,
+    rating
+){
+
+    const product = {
+
+        id: Date.now(),
+
+        name: name,
+
+        price: price,
+
+        image: image,
+
+        category: category,
+
+        rating: rating,
+
+        description:
+        "Premium fashion collection from Velora."
+
+    };
+
+    localStorage.setItem(
+        "viewProduct",
+        JSON.stringify(product)
+    );
+
+    window.location.href =
+    "./pages/product.html";
+}
+
+</script>
 </body>
 
 <!--Mobile bottom-->
