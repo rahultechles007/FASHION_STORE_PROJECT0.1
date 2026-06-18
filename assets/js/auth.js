@@ -83,34 +83,56 @@ function reguser() {
 
 function loginuser() {
 
-    let email = document.getElementById("loginEmail").value.trim();
-    let password = document.getElementById("loginPassword").value;
+    let email =
+        document.getElementById("loginEmail")
+        .value.trim()
+        .toLowerCase();
 
-    // Admin login to logic to condition 
-    if (email === "admin@velora.com" && password === "admin123") {
-        localStorage.setItem("currentUser", JSON.stringify({
-            name: "Admin",
-            email,
-            role: "admin"
-        }));
+    let password =
+        document.getElementById("loginPassword")
+        .value;
+
+    // ADMIN LOGIN
+    if (
+        email === "admin@velora.com" &&
+        password === "admin123"
+    ) {
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify({
+                name: "Admin",
+                email: email,
+                role: "admin"
+            })
+        );
 
         alert("Admin Login Successful");
+
         window.location.href = "./admin.html";
         return;
     }
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    // USER LOGIN
+    let users =
+        JSON.parse(localStorage.getItem("users")) || [];
 
-    let user = users.find(u =>
-        u.email === email && u.password === password
+    let user = users.find(
+        u =>
+            u.email.toLowerCase() === email &&
+            u.password === password
     );
 
     if (!user) {
+
         alert("Invalid Email or Password");
         return;
     }
 
-    localStorage.setItem("currentUser", JSON.stringify(user));
+    localStorage.setItem(
+        "currentUser",
+        JSON.stringify(user)
+    );
 
     alert("Login Successful");
 

@@ -2,248 +2,392 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Velora</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../src/output.css">
+<title>Login | Velora</title>
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="../src/output.css">
 
-    <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+<style>
 
-        .fade-in {
-            animation: fadeIn .8s ease;
-        }
+body{
+    background:
+    radial-gradient(circle at top right,
+    rgba(200,169,107,.15),
+    transparent 30%),
 
-        body {
-            background:
-                radial-gradient(circle at top right,
-                    rgba(200, 169, 107, .15),
-                    transparent 30%),
-                radial-gradient(circle at bottom left,
-                    rgba(200, 169, 107, .15),
-                    transparent 30%),
-                #F5F2EB;
-        }
-    </style>
+    radial-gradient(circle at bottom left,
+    rgba(200,169,107,.15),
+    transparent 30%),
+
+    #F5F2EB;
+}
+
+.login-card{
+    animation: fadeIn .8s ease;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <div class="min-h-screen flex items-center justify-center px-4 py-10">
+<div class="min-h-screen flex items-center justify-center px-4 py-10">
 
-        <div
-            class="fade-in bg-white rounded-3xl shadow-2xl border border-[#E8E2D5] w-full max-w-md p-8 md:p-10">
+<div
+class="login-card
+bg-white
+w-full
+max-w-md
+rounded-[32px]
+border border-[#E8E2D5]
+shadow-[0_20px_60px_rgba(0,0,0,.12)]
+p-8 md:p-10">
 
-            <!-- Logo -->
-            <div class="text-center mb-8">
+<!-- LOGO -->
 
-                <div
-                    class="w-20 h-20 mx-auto mb-5 rounded-full bg-[#C8A96B]/20 flex items-center justify-center">
+<div class="text-center mb-8">
 
-                    <i class="fa-solid fa-gem text-[#C8A96B] text-3xl"></i>
+<div
+class="w-20 h-20 mx-auto mb-5 rounded-full bg-[#C8A96B]/20 flex items-center justify-center">
 
-                </div>
+<i class="fa-solid fa-gem text-[#C8A96B] text-3xl"></i>
 
-                <a href="../index.html"
-                    class="text-4xl font-bold tracking-widest inline-block">
+</div>
 
-                    VE<span class="text-[#C8A96B]">L</span>ORA
+<a href="../index.html"
+class="text-4xl font-bold tracking-widest">
 
-                </a>
+VE<span class="text-[#C8A96B]">L</span>ORA
 
-                <p class="text-gray-500 mt-3">
-                    Welcome back to your fashion destination
-                </p>
+</a>
 
-            </div>
+<p class="text-gray-500 mt-4 leading-7">
+Welcome back to your fashion destination
+</p>
 
-            <!-- Form -->
-            <form id="loginForm" class="space-y-5">
+</div>
 
-                <!-- Email -->
-                <div>
+<!-- LOGIN FORM -->
 
-                    <label class="block text-sm font-medium mb-2">
-                        Email Address
-                    </label>
+<form id="loginForm" class="space-y-6">
 
-                    <div class="relative">
+<!-- EMAIL -->
 
-                       
-                        <input
-                            type="email"
-                            id="loginEmail"
-                            placeholder="Enter your email"
-                            required
-                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8A96B] focus:outline-none"
-                            autocomplete="off"
-                            >
-                         
-                    </div>
+<div>
 
-                </div>
+<label class="block mb-2 font-medium">
 
-                <!-- Password -->
-                <div>
+Email Address
 
-                    <label class="block text-sm font-medium mb-2">
-                        Password
-                    </label>
+</label>
 
-                    <div class="relative">
+<input
+type="email"
+id="loginEmail"
+placeholder="Enter your email"
+class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#C8A96B]"
+required>
 
-                        <input
-                            type="password"
-                            id="loginPassword"
-                            placeholder="Enter your password"
-                            required
-                            class="w-full pl-11 pr-12 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#C8A96B] focus:outline-none"
-                            autocomplete="new-password">
+</div>
 
-                        <button
-                            type="button"
-                            onclick="togglePassword()"
-                            class="absolute right-4 top-1/2 -translate-y-1/2">
+<!-- PASSWORD -->
 
-                            <i id="eyeIcon"
-                                class="fa-solid fa-eye text-gray-500"></i>
+<div>
 
-                        </button>
+<label class="block mb-2 font-medium">
 
-                    </div>
+Password
 
-                </div>
+</label>
 
-                <!-- Remember -->
-                <div class="flex justify-between items-center text-sm">
+<div class="relative">
 
-                    <label class="flex items-center gap-2">
+<input
+type="password"
+id="loginPassword"
+placeholder="Enter your password"
+class="w-full border border-gray-300 rounded-xl px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-[#C8A96B]"
+required>
 
-                        <input
-                            type="checkbox"
-                            class="accent-[#C8A96B]">
+<button
+type="button"
+onclick="togglePassword()"
+class="absolute right-4 top-1/2 -translate-y-1/2">
 
-                        Remember Me
+<i
+id="eyeIcon"
+class="fa-solid fa-eye text-gray-500">
+</i>
 
-                    </label>
+</button>
 
-                    <a href="#"
-                        class="text-[#C8A96B] hover:underline">
-                        Forgot Password?
-                    </a>
+</div>
 
-                </div>
+</div>
 
-                <!-- Login -->
-                <button
-                    type="button"
-                    onclick="loginuser()"
-                    class="w-full bg-[#1E1A17] text-white py-3 rounded-xl font-semibold hover:bg-[#C8A96B] hover:text-black transition-all">
+<!-- OPTIONS -->
 
-                    Login
+<div class="flex justify-between items-center text-sm">
 
-                </button>
+<label class="flex items-center gap-2">
 
-            </form>
+<input
+type="checkbox"
+class="accent-[#C8A96B]">
 
-            <!-- Divider -->
-            <div class="flex items-center my-6">
+Remember Me
 
-                <div class="flex-1 border-t"></div>
+</label>
 
-                <span class="px-4 text-gray-400 text-sm">
-                    OR
-                </span>
+<a
+href="javascript:void(0)"
+onclick="openForgotModal()"
+class="text-[#C8A96B] font-medium hover:underline">
 
-                <div class="flex-1 border-t"></div>
+Forgot Password?
 
-            </div>
+</a>
 
-            <!-- Social -->
-            <div class="grid grid-cols-2 gap-3">
+</div>
 
-                <button
-                    class="border py-3 rounded-xl hover:bg-gray-100 transition">
+<!-- LOGIN BUTTON -->
 
-                    <i class="fa-brands fa-google mr-2"></i>
-                    Google
+<button
+type="button"
+onclick="loginuser()"
+class="w-full bg-[#1E1A17] text-white py-3 rounded-xl font-semibold hover:bg-[#C8A96B] hover:text-black transition">
 
-                </button>
+Login
 
-                <button
-                    class="border py-3 rounded-xl hover:bg-gray-100 transition">
+</button>
 
-                    <i class="fa-brands fa-facebook-f mr-2"></i>
-                    Facebook
+</form>
 
-                </button>
+<!-- DIVIDER -->
 
-            </div>
+<div class="flex items-center my-6">
 
-            <!-- Register -->
-            <p class="text-center text-sm text-gray-500 mt-8">
+<div class="flex-1 border-t"></div>
 
-                Don't have an account?
+<span class="px-4 text-gray-400 text-sm">
 
-                <a href="./register.html"
-                    class="text-[#C8A96B] font-semibold hover:underline">
+OR
 
-                    Register
+</span>
 
-                </a>
+<div class="flex-1 border-t"></div>
 
-            </p>
+</div>
 
-        </div>
+<!-- SOCIAL LOGIN -->
 
-    </div>
+<div class="grid grid-cols-2 gap-3">
 
-    <script>
-        function togglePassword() {
+<button
+class="border py-3 rounded-xl hover:bg-gray-100">
 
-            const password =
-                document.getElementById("loginPassword");
+<i class="fa-brands fa-google mr-2"></i>
 
-            const eye =
-                document.getElementById("eyeIcon");
+Google
 
-            if (password.type === "password") {
+</button>
 
-                password.type = "text";
+<button
+class="border py-3 rounded-xl hover:bg-gray-100">
 
-                eye.classList.replace(
-                    "fa-eye",
-                    "fa-eye-slash"
-                );
+<i class="fa-brands fa-facebook-f mr-2"></i>
 
-            } else {
+Facebook
 
-                password.type = "password";
+</button>
 
-                eye.classList.replace(
-                    "fa-eye-slash",
-                    "fa-eye"
-                );
-            }
-        }
-    </script>
+</div>
 
-    <script src="../assets/js/auth.js"></script>
+<!-- REGISTER -->
+
+<p class="text-center mt-8 text-gray-500">
+
+Don't have an account?
+
+<a
+href="./register.html"
+class="text-[#C8A96B] font-semibold hover:underline">
+
+Register
+
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+<!-- FORGOT PASSWORD MODAL -->
+
+<div
+id="forgotModal"
+class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+<div
+class="bg-white w-[90%] max-w-md rounded-3xl p-6 shadow-xl">
+
+<h2 class="text-2xl font-bold mb-2">
+Reset Password
+</h2>
+
+<p class="text-gray-500 text-sm mb-4">
+Enter your registered email
+</p>
+
+<input
+type="email"
+id="resetEmail"
+placeholder="Email"
+class="w-full border rounded-xl px-4 py-3 mb-4">
+
+<input
+type="password"
+id="newPassword"
+placeholder="New Password"
+class="w-full border rounded-xl px-4 py-3 mb-4">
+
+<div class="flex gap-3">
+
+<button
+onclick="resetPassword()"
+class="flex-1 bg-[#1E1A17] text-white py-3 rounded-xl">
+
+Update
+
+</button>
+
+<button
+onclick="closeForgotModal()"
+class="flex-1 bg-gray-200 py-3 rounded-xl">
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+const password =
+document.getElementById("loginPassword");
+
+const eye =
+document.getElementById("eyeIcon");
+
+if(password.type==="password"){
+
+password.type="text";
+
+eye.classList.replace(
+"fa-eye",
+"fa-eye-slash"
+);
+
+}else{
+
+password.type="password";
+
+eye.classList.replace(
+"fa-eye-slash",
+"fa-eye"
+);
+}
+}
+
+function openForgotModal(){
+
+document
+.getElementById("forgotModal")
+.classList.remove("hidden");
+
+document
+.getElementById("forgotModal")
+.classList.add("flex");
+}
+
+function closeForgotModal(){
+
+document
+.getElementById("forgotModal")
+.classList.add("hidden");
+
+document
+.getElementById("forgotModal")
+.classList.remove("flex");
+}
+
+function resetPassword(){
+
+let email =
+document.getElementById("resetEmail")
+.value.trim();
+
+let newPassword =
+document.getElementById("newPassword")
+.value;
+
+let users =
+JSON.parse(
+localStorage.getItem("users")
+) || [];
+
+let user =
+users.find(
+u => u.email === email
+);
+
+if(!user){
+
+alert("User not found");
+return;
+}
+
+user.password = newPassword;
+
+localStorage.setItem(
+"users",
+JSON.stringify(users)
+);
+
+alert("Password Updated");
+
+closeForgotModal();
+}
+
+</script>
+
+<script src="../assets/js/auth.js"></script>
 
 </body>
-
 </html>
