@@ -1,69 +1,122 @@
 // =====================
 // GET CART
 // =====================
+
 function getCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
+
+    return JSON.parse(
+        localStorage.getItem("cart")
+    ) || [];
+}
+
+// =====================
+// GET ORDERS
+// =====================
+
+function getOrders() {
+
+    return JSON.parse(
+        localStorage.getItem("orders")
+    ) || [];
 }
 
 // =====================
 // SAVE ORDERS
 // =====================
-function getOrders() {
-    return JSON.parse(localStorage.getItem("orders")) || [];
-}
 
 function saveOrders(orders) {
-    localStorage.setItem("orders", JSON.stringify(orders));
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
 }
 
 // =====================
 // GLOBAL VALUES
 // =====================
+
 let cart = getCart();
+
 let total = 0;
 
 // =====================
-// RENDER CHECKOUT
+// LOAD CHECKOUT
 // =====================
+
 function loadCheckout() {
 
-    const orderSummary = document.getElementById("orderSummary");
-    const totalAmount = document.getElementById("totalAmount");
+    const orderSummary =
+        document.getElementById("orderSummary");
+
+    const totalAmount =
+        document.getElementById("totalAmount");
 
     if (!orderSummary || !totalAmount) return;
 
     orderSummary.innerHTML = "";
+
     total = 0;
 
+    // EMPTY CART
+
     if (cart.length === 0) {
+
         orderSummary.innerHTML = `
-            <p class="text-gray-500">Your cart is empty</p>
+            <p class="text-center text-gray-500 py-4">
+                Your cart is empty
+            </p>
         `;
-        totalAmount.innerText = 0;
+
+        totalAmount.innerText = "0";
+
         return;
     }
 
+    // PRODUCTS
+
     cart.forEach(item => {
 
-        const qty = item.quantity || 1;
-        const itemTotal = item.price * qty;
+        const quantity =
+            item.quantity || 1;
+
+        const itemTotal =
+            item.price * quantity;
 
         total += itemTotal;
 
-        const div = document.createElement("div");
-        div.className = "flex justify-between border-b py-2 text-sm";
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "flex justify-between items-center border-b py-3";
 
         div.innerHTML = `
-            <span>${item.name} × ${qty}</span>
-            <span>₹${itemTotal}</span>
+            <div>
+                <p class="font-medium">
+                    ${item.name}
+                </p>
+
+                <p class="text-sm text-gray-500">
+                    Qty: ${quantity}
+                </p>
+            </div>
+
+            <span class="font-semibold">
+                ₹${itemTotal}
+            </span>
         `;
 
         orderSummary.appendChild(div);
     });
 
     // TOTAL
-    const totalDiv = document.createElement("div");
-    totalDiv.className = "flex justify-between mt-4 font-bold text-lg";
+
+    const totalDiv =
+        document.createElement("div");
+
+    totalDiv.className =
+        "flex justify-between items-center pt-4 font-bold text-lg";
 
     totalDiv.innerHTML = `
         <span>Total</span>
@@ -76,37 +129,91 @@ function loadCheckout() {
 }
 
 // =====================
-// PLACE ORDER (FINAL FIXED)
+// PLACE ORDER
 // =====================
+
 function placeOrder() {
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cart =
+        getCart();
 
-    if (cart.length === 0) return;
+    if (cart.length === 0) {
 
-    let user = JSON.parse(localStorage.getItem("currentUser"));
+        alert("Your cart is empty");
 
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        return;
+    }
 
-    let user = JSON.parse(localStorage.getItem("currentUser"));
+    const user =
+        JSON.parse(
+            localStorage.getItem("currentUser")
+        );
 
-let newOrder = {
-    id: Date.now(),
-    userEmail: user.email,
-    items: cart,
-    total: cart.reduce((sum, i) => sum + i.price * i.quantity, 0),
-    status: "Processing",
-    date: new Date().toLocaleString()
-};
+    if (!user) {
+
+        alert("Please login first");
+
+        window.location.href =
+            "./login.html";
+
+        return;
+    }
+
+    const orders =
+        getOrders();
+
+    const orderTotal =
+        cart.reduce(
+            (sum, item) =>
+                sum +
+                (item.price *
+                    (item.quantity || 1)),
+            0
+        );
+
+    const newOrder = {
+
+        id: Date.now(),
+
+        userEmail:
+            user.email,
+
+        items: cart,
+
+        total: orderTotal,
+
+        status: "Processing",
+
+        date:
+            new Date().toLocaleString()
+    };
+
     orders.push(newOrder);
 
-    localStorage.setItem("orders", JSON.stringify(orders));
+    saveOrders(orders);
+
+    // CLEAR CART
 
     localStorage.removeItem("cart");
 
-    window.location.href = "./order-success.html";
+    alert(
+        "Order placed successfully!"
+    );
+
+    // REDIRECT
+
+    window.location.href =
+        "./order-success.html";
 }
+
 // =====================
-// INIT PAGE
+// PAGE INIT
 // =====================
-document.addEventListener("DOMContentLoaded", loadCheckout);
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        loadCheckout();
+    }
+);

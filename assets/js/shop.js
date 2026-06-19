@@ -12,11 +12,36 @@ JSON.parse(localStorage.getItem("products")) || [];
 
 let activeCategory = "All";
 
-function displayProducts(productList) {
+// =====================
+// TOAST
+// =====================
+
+function showToast(message){
+
+    const toast =
+    document.createElement("div");
+
+    toast.className =
+    "fixed top-5 right-5 bg-green-500 text-white px-5 py-3 rounded-xl shadow-lg z-50";
+
+    toast.innerText = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(()=>{
+        toast.remove();
+    },2500);
+}
+
+// =====================
+// DISPLAY PRODUCTS
+// =====================
+
+function displayProducts(productList){
 
     productGrid.innerHTML = "";
 
-    if(productList.length === 0){
+    if(productList.length===0){
 
         productGrid.innerHTML = `
         <div class="col-span-full text-center py-10">
@@ -27,28 +52,24 @@ function displayProducts(productList) {
         return;
     }
 
-    productList.forEach(product => {
+    productList.forEach(product=>{
 
         productGrid.innerHTML += `
 
-<div class="bg-white rounded-2xl shadow hover:shadow-xl transition overflow-hidden flex flex-col h-[500px]">
+<div class="group bg-white rounded-3xl overflow-hidden shadow hover:shadow-2xl transition duration-500 flex flex-col h-[550px]">
 
-    <div class="h-64 overflow-hidden">
+    <div class="aspect-[3/4] overflow-hidden">
 
         <img
         src="${product.image}"
         alt="${product.name}"
-        class="w-full h-full object-cover">
+        class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
 
     </div>
 
     <div class="p-4 flex flex-col flex-1">
 
-     <p class="text-xs uppercase text-gray-500">
-            ${product.name}
-        </p
-
-        <p class="text-xs uppercase text-gray-500">
+        <p class="text-xs uppercase text-gray-400">
             ${product.category}
         </p>
 
@@ -59,19 +80,20 @@ function displayProducts(productList) {
         <div class="flex items-center gap-1 mt-2">
 
             <i class="fa-solid fa-star text-[#C8A96B]"></i>
+
             <span>
                 ${product.rating || 4.5}
             </span>
 
         </div>
 
-        <p class="text-sm text-gray-500 mt-2 flex-1">
+        <p class="text-sm text-gray-500 mt-3 flex-1">
 
-            ${product.description || ""}
+            ${(product.description || "").substring(0,80)}
 
         </p>
 
-        <div class="mt-3">
+        <div class="mt-4">
 
             <span class="text-2xl font-bold text-[#C8A96B]">
 
@@ -87,26 +109,21 @@ function displayProducts(productList) {
             onclick="viewProduct('${product.id}')"
             class="flex-1 border border-[#C8A96B] text-[#C8A96B] py-2 rounded-xl">
 
-                <i class="fa-solid fa-eye mr-2"></i>
-
                 View
 
             </button>
 
-           <button
-onclick="addToCart(
+            <button
+            onclick="addToCart(
 '${product.name}',
 ${product.price},
-'${product.image}',
-'${product.category}',
-${product.rating || 4.5},
-'${product.description || ""}'
+'${product.image}'
 )"
-class="flex-1 bg-[#1E1A17] text-white py-2 rounded-xl">
+            class="flex-1 bg-[#1E1A17] text-white py-2 rounded-xl">
 
-Add Cart
+                Add Cart
 
-</button>
+            </button>
 
         </div>
 
@@ -118,43 +135,45 @@ Add Cart
     });
 }
 
-function addToCart(productId) {
+// =====================
+// CART
+// =====================
+
+function addToCart(productId){
 
     let cart =
     JSON.parse(localStorage.getItem("cart")) || [];
 
     let product =
     products.find(
-        p => String(p.id) === String(productId)
+        p=>String(p.id)===String(productId)
     );
 
-    if (!product) {
-        alert("Product not found");
+    if(!product){
         return;
     }
 
     let existing =
     cart.find(
-        item => String(item.id) === String(product.id)
+        item=>String(item.id)===String(product.id)
     );
 
-    if (existing) {
+    if(existing){
 
         existing.quantity++;
 
-    } else {
+    }else{
 
         cart.push({
 
-            id: product.id,
-            name: product.name,
-            image: product.image,
-            category: product.category,
-            description: product.description,
-            rating: product.rating || 4.5,
-            price: Number(product.price),
-            quantity: 1
-
+            id:product.id,
+            name:product.name,
+            image:product.image,
+            category:product.category,
+            description:product.description,
+            rating:product.rating || 4.5,
+            price:Number(product.price),
+            quantity:1
         });
     }
 
@@ -165,8 +184,15 @@ function addToCart(productId) {
 
     updateCartCount();
 
-    alert(product.name + " added to cart");
+    showToast(
+        product.name +
+        " added to cart"
+    );
 }
+
+// =====================
+// CART COUNT
+// =====================
 
 function updateCartCount(){
 
@@ -180,12 +206,16 @@ function updateCartCount(){
     );
 
     document
-    .querySelectorAll("#cartCount")
-    .forEach(badge=>{
+    .querySelectorAll(".cartCount")
+    .forEach(el=>{
 
-        badge.innerText = count;
+        el.innerText = count;
     });
 }
+
+// =====================
+// VIEW PRODUCT
+// =====================
 
 function viewProduct(id){
 
@@ -194,24 +224,47 @@ function viewProduct(id){
         id
     );
 
+    let viewed =
+    JSON.parse(
+        localStorage.getItem("recentlyViewed")
+    ) || [];
+
+    if(!viewed.includes(id)){
+
+        viewed.unshift(id);
+
+        viewed = viewed.slice(0,6);
+    }
+
+    localStorage.setItem(
+        "recentlyViewed",
+        JSON.stringify(viewed)
+    );
+
     window.location.href =
     `product.html?id=${id}`;
 }
 
+// =====================
+// FILTERS
+// =====================
+
 function applyFilters(){
 
     let search =
-    searchInput.value.toLowerCase();
+    searchInput?.value
+    .toLowerCase() || "";
 
     let filtered =
     products.filter(product=>{
 
-        let categoryMatch =
+        const categoryMatch =
         activeCategory==="All" ||
         product.category===activeCategory;
 
-        let searchMatch =
-        product.name.toLowerCase()
+        const searchMatch =
+        product.name
+        .toLowerCase()
         .includes(search);
 
         return categoryMatch &&
@@ -235,9 +288,61 @@ filterButtons.forEach(btn=>{
 
         applyFilters();
     });
-
 });
+
+// =====================
+// FLASH SALE COUNTDOWN
+// =====================
+
+function startCountdown(){
+
+    const countdown =
+    document.getElementById("saleCountdown");
+
+    if(!countdown) return;
+
+    let end =
+    new Date();
+
+    end.setHours(
+        end.getHours()+12
+    );
+
+    setInterval(()=>{
+
+        let now =
+        new Date().getTime();
+
+        let distance =
+        end.getTime()-now;
+
+        let hours =
+        Math.floor(distance/(1000*60*60));
+
+        let mins =
+        Math.floor(
+            (distance%(1000*60*60))
+            /(1000*60)
+        );
+
+        let secs =
+        Math.floor(
+            (distance%(1000*60))/1000
+        );
+
+        countdown.innerText =
+        `${hours}h ${mins}m ${secs}s`;
+
+    },1000);
+}
+
+// =====================
+// INIT
+// =====================
 
 displayProducts(products);
 
+
 updateCartCount();
+
+startCountdown();

@@ -1,77 +1,373 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout | Velora</title>
+
     <link rel="stylesheet" href="../src/output.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 </head>
 
-<body class="bg-[#F5F2EB]">
+<body class="bg-[#F5F2EB] dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
-<!-- CHECKOUT WRAPPER -->
-<div class="max-w-5xl mx-auto px-4 py-10">
+    <!-- HEADER -->
 
-    <h1 class="text-3xl font-bold text-center mb-8">
-        Checkout
-    </h1>
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg shadow">
 
-    <div class="grid md:grid-cols-2 gap-6">
+        <div class="max-w-7xl mx-auto px-4">
 
-        <!-- LEFT: USER DETAILS -->
-        <div class="bg-white p-6 rounded-2xl shadow">
+            <div class="flex justify-between items-center h-20">
 
-            <h2 class="text-xl font-semibold mb-4">
-                Billing Details
-            </h2>
+                <a href="../index.html"
+                    class="text-3xl font-bold">
 
-            <input type="text" placeholder="Full Name"
-                class="w-full mb-3 border rounded-xl px-4 py-2">
+                    VE<span class="text-[#C8A96B]">L</span>ORA
 
-            <input type="text" placeholder="Phone Number"
-                class="w-full mb-3 border rounded-xl px-4 py-2">
+                </a>
 
-            <input type="text" placeholder="Address"
-                class="w-full mb-3 border rounded-xl px-4 py-2">
+                <div class="flex items-center gap-6">
 
-            <input type="text" placeholder="City"
-                class="w-full mb-3 border rounded-xl px-4 py-2">
+                    <a href="./shop.html"
+                        class="hover:text-[#C8A96B] transition">
+                        Shop
+                    </a>
 
-        </div>
+                    <a href="./wishlist.html"
+                        class="hover:text-[#C8A96B] transition">
+                        Wishlist
+                    </a>
 
-        <!-- RIGHT: ORDER SUMMARY -->
-        <div class="bg-white p-6 rounded-2xl shadow">
+                    <a href="./cart.html"
+                        class="hover:text-[#C8A96B] transition">
+                        Cart
+                    </a>
 
-            <h2 class="text-xl font-semibold mb-4">
-                Order Summary
-            </h2>
+                    <button id="darkModeToggle"
+                        class="bg-[#C8A96B] text-white w-10 h-10 rounded-full">
+                        🌙
+                    </button>
 
-            <!-- IMPORTANT: ONLY ONE ORDER SUMMARY -->
-            <div id="orderSummary" class="space-y-3"></div>
+                </div>
 
-            <hr class="my-4">
-
-            <h3 class="text-xl font-bold">
-                Total: ₹<span id="totalAmount">0</span>
-            </h3>
-
-            <button
-                onclick="placeOrder()"
-                class="w-full mt-5 bg-[#1E1A17] text-white py-3 rounded-xl hover:bg-[#C8A96B] transition">
-                Place Order
-            </button>
+            </div>
 
         </div>
 
-    </div>
+    </header>
 
-</div>
+    <!-- PAGE TITLE -->
 
-<!-- LOGIN CHECK -->
+    <section class="py-10">
 
-<!-- CHECKOUT LOGIC -->
-<script src="../assets/js/checkout.js"></script>
+        <div class="max-w-7xl mx-auto px-4 text-center">
+
+            <h1 class="text-4xl lg:text-5xl font-bold">
+                Secure Checkout
+            </h1>
+
+            <p class="text-gray-500 mt-3">
+                Complete your purchase and enjoy premium fashion.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- CHECKOUT -->
+
+    <section class="pb-20">
+
+        <div class="max-w-7xl mx-auto px-4">
+
+            <div class="grid lg:grid-cols-3 gap-8">
+
+                <!-- BILLING DETAILS -->
+
+                <div class="lg:col-span-2">
+
+                    <div data-aos="fade-right"
+                        class="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6">
+
+                        <h2 class="text-2xl font-bold mb-6">
+                            Billing Information
+                        </h2>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+
+                            <input type="text"
+                                placeholder="First Name"
+                                class="border rounded-xl px-4 py-3 dark:bg-gray-700">
+
+                            <input type="text"
+                                placeholder="Last Name"
+                                class="border rounded-xl px-4 py-3 dark:bg-gray-700">
+
+                            <input type="email"
+                                placeholder="Email Address"
+                                class="border rounded-xl px-4 py-3 dark:bg-gray-700">
+
+                            <input type="text"
+                                placeholder="Phone Number"
+                                class="border rounded-xl px-4 py-3 dark:bg-gray-700">
+
+                        </div>
+
+                        <textarea
+                            rows="4"
+                            placeholder="Full Address"
+                            class="w-full border rounded-xl px-4 py-3 mt-4 dark:bg-gray-700"></textarea>
+
+                        <div class="grid md:grid-cols-2 gap-4 mt-4">
+
+                            <input type="text"
+                                placeholder="City"
+                                class="border rounded-xl px-4 py-3 dark:bg-gray-700">
+
+                            <input type="text"
+                                placeholder="Postal Code"
+                                class="border rounded-xl px-4 py-3 dark:bg-gray-700">
+
+                        </div>
+
+                    </div>
+
+                    <!-- PAYMENT METHOD -->
+
+                    <div data-aos="fade-up"
+                        class="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6 mt-6">
+
+                        <h2 class="text-2xl font-bold mb-5">
+                            Payment Method
+                        </h2>
+
+                        <div class="space-y-3">
+
+                            <label class="flex items-center gap-3">
+
+                                <input type="radio"
+                                    name="payment"
+                                    checked>
+
+                                Credit / Debit Card
+
+                            </label>
+
+                            <label class="flex items-center gap-3">
+
+                                <input type="radio"
+                                    name="payment">
+
+                                UPI Payment
+
+                            </label>
+
+                            <label class="flex items-center gap-3">
+
+                                <input type="radio"
+                                    name="payment">
+
+                                Cash On Delivery
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ORDER SUMMARY -->
+
+                <div>
+
+                    <div data-aos="fade-left"
+                        class="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6 sticky top-24">
+
+                        <h2 class="text-2xl font-bold mb-5">
+                            Order Summary
+                        </h2>
+
+                        <div id="orderSummary"
+                            class="space-y-3">
+                        </div>
+
+                        <hr class="my-5">
+
+                        <!-- COUPON -->
+
+                        <div class="flex mb-5">
+
+                            <input type="text"
+                                placeholder="Coupon Code"
+                                class="flex-1 border px-4 py-3 rounded-l-xl dark:bg-gray-700">
+
+                            <button
+                                class="bg-[#C8A96B] text-white px-5 rounded-r-xl">
+                                Apply
+                            </button>
+
+                        </div>
+
+                        <div class="flex justify-between text-lg font-semibold mb-5">
+
+                            <span>Total</span>
+
+                            <span>
+                                ₹<span id="totalAmount">0</span>
+                            </span>
+
+                        </div>
+
+                        <button
+                            onclick="placeOrder()"
+                            class="w-full bg-[#1E1A17] hover:bg-[#C8A96B] text-white py-4 rounded-xl transition">
+
+                            Place Order
+
+                        </button>
+
+                        <div class="mt-4 text-center text-sm text-gray-500">
+
+                            <i class="fa-solid fa-lock"></i>
+                            Secure SSL Encrypted Checkout
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="bg-[#1E1A17] text-white">
+
+        <div class="max-w-7xl mx-auto px-6 py-16">
+
+            <div class="grid md:grid-cols-4 gap-10">
+
+                <div>
+
+                    <h2 class="text-3xl font-bold mb-4">
+
+                        VE<span class="text-[#C8A96B]">L</span>ORA
+
+                    </h2>
+
+                    <p class="text-gray-400">
+
+                        Luxury fashion for modern lifestyles.
+
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h3 class="font-semibold mb-4">
+                        Shop
+                    </h3>
+
+                    <ul class="space-y-2 text-gray-400">
+
+                        <li>Women</li>
+                        <li>Men</li>
+                        <li>Accessories</li>
+
+                    </ul>
+
+                </div>
+
+                <div>
+
+                    <h3 class="font-semibold mb-4">
+                        Support
+                    </h3>
+
+                    <ul class="space-y-2 text-gray-400">
+
+                        <li>Contact</li>
+                        <li>Shipping</li>
+                        <li>Returns</li>
+
+                    </ul>
+
+                </div>
+
+                <div>
+
+                    <h3 class="font-semibold mb-4">
+                        Newsletter
+                    </h3>
+
+                    <input type="email"
+                        placeholder="Your Email"
+                        class="w-full px-4 py-3 rounded-xl text-black">
+
+                </div>
+
+            </div>
+
+            <hr class="my-8 border-gray-700">
+
+            <p class="text-center text-gray-500">
+
+                © 2026 Velora Fashion Store.
+                All Rights Reserved.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- DARK MODE -->
+
+    <script>
+        const toggle = document.getElementById("darkModeToggle");
+
+        toggle.addEventListener("click", () => {
+
+            document.documentElement.classList.toggle("dark");
+
+            if (document.documentElement.classList.contains("dark")) {
+
+                localStorage.setItem("theme", "dark");
+
+            } else {
+
+                localStorage.setItem("theme", "light");
+            }
+        });
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.documentElement.classList.add("dark");
+        }
+
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+
+    <!-- CHECKOUT SCRIPT -->
+
+    <script src="../assets/js/checkout.js"></script>
 
 </body>
+
 </html>
