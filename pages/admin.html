@@ -426,6 +426,10 @@ function updateStatus(id,status){
 
 /* PRODUCTS */
 
+function getProducts() {
+    return JSON.parse(localStorage.getItem("products")) || [];
+}
+
 function addProduct() {
 
     let name = document.getElementById("pName").value.trim();

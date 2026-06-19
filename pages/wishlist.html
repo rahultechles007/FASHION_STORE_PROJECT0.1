@@ -2,47 +2,219 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Wishlist | Velora</title>
-    <link rel="stylesheet" href="../src/output.css">
+<meta charset="UTF-8">
+<title>Wishlist | Velora</title>
+<link rel="stylesheet" href="../src/output.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+@keyframes fadeUp {
+from {opacity:0; transform:translateY(25px);}
+to {opacity:1; transform:translateY(0);}
+}
+
+.animate {
+animation: fadeUp .6s ease;
+}
+
+.card {
+transition: .3s ease;
+}
+
+.card:hover {
+transform: translateY(-6px);
+box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.empty {
+text-align:center;
+padding:80px 20px;
+color:#777;
+}
+</style>
 </head>
 
-<body class="bg-[#F5F2EB]">
+<body class="bg-[#F5F2EB] min-h-screen pb-20">
 
-    <div class="max-w-6xl mx-auto p-6">
+<!-- ================= HEADER START ================= -->
+<header class="bg-white sticky top-0 z-50 shadow-sm">
 
-        <h1 class="text-2xl font-bold mb-6">My Wishlist</h1>
+    <div class="max-w-7xl mx-auto px-4 lg:px-6">
 
-        <div id="wishlistGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+        <div class="flex items-center justify-between py-4">
 
+            <!-- LOGO -->
+            <a href="../index.html" class="flex items-center gap-3">
+
+                <div class="w-12 h-12 rounded-full bg-[#C8A96B]/20 flex items-center justify-center">
+                    <i class="fa-solid fa-gem text-[#C8A96B] text-xl"></i>
+                </div>
+
+                <h1 class="text-3xl font-bold tracking-widest">
+                    VE<span class="text-[#C8A96B]">L</span>ORA
+                </h1>
+
+            </a>
+
+            <!-- RIGHT SECTION -->
+            <div class="flex items-center gap-5">
+
+                <div class="hidden md:flex items-center gap-2">
+                    <i class="fa-solid fa-user text-[#C8A96B]"></i>
+                    <span id="headerUsername">Guest</span>
+                </div>
+
+                <a href="./login.html" class="hidden md:block hover:text-[#C8A96B]">
+                    Login
+                </a>
+
+                <!-- WISHLIST -->
+                <a href="./wishlist.html" class="relative">
+                    <i class="fa-regular fa-heart text-xl"></i>
+                    <span id="wishlistCount"
+                        class="absolute -top-2 -right-2 bg-[#C8A96B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                        0
+                    </span>
+                </a>
+
+                <!-- CART -->
+                <a href="./cart.html" class="relative">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <span id="cartCount"
+                        class="absolute -top-2 -right-2 bg-[#C8A96B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                        0
+                    </span>
+                </a>
+
+            </div>
+        </div>
     </div>
 
-    <script src="../assets/js/wishlist.js"></script>
-<!-- MOBILE BOTTOM NAV -->
-<div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t flex justify-around py-2 md:hidden z-50">
+</header>
+<!-- ================= HEADER END ================= -->
 
-    <a href="../index.html" class="text-center text-sm">
-        <i class="fa-solid fa-house"></i>
-    </a>
 
-    <a href="./shop.html" class="text-center text-sm">
-        <i class="fa-solid fa-bag-shopping"></i>
-    </a>
+<!-- PAGE TITLE -->
+<div class="max-w-6xl mx-auto px-6 pt-8 animate">
 
-    <a href="./cart.html" class="relative text-center text-sm">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">0</span>
-    </a>
+<h1 class="text-3xl font-bold flex mx-3 mt-3 items-center gap-2">
+<i class="fa-solid fa-heart text-red-500"></i>
+My Wishlist
+</h1>
 
-    <a href="./wishlist.html" class="text-center text-sm">
-        <i class="fa-regular fa-heart"></i>
-    </a>
-
-    <a href="./profile.html" class="text-center text-sm">
-        <i class="fa-solid fa-user"></i>
-    </a>
+<p class="text-gray-500 mt-2">
+Save your favorite fashion items here
+</p>
 
 </div>
-</body>
 
+<!-- GRID -->
+<div class="max-w-6xl mx-auto px-6 mt-8">
+
+<div id="wishlistGrid" class="grid grid-cols-2 md:grid-cols-4 gap-5 animate"></div>
+
+</div>
+
+<!-- EMPTY STATE -->
+<div id="emptyState" class="empty hidden animate">
+
+<i class="fa-regular fa-heart text-5xl text-[#C8A96B]"></i>
+
+<h2 class="text-xl font-semibold mt-3">Your Wishlist is Empty</h2>
+
+<p class="mt-2">Start adding products you love ❤️</p>
+
+<a href="./shop.html"
+class="inline-block mt-5 bg-[#C8A96B] text-white px-6 py-3 rounded-xl hover:bg-black transition">
+Browse Products
+</a>
+
+</div>
+
+
+<!-- MOBILE NAV -->
+<div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t flex justify-around py-3 md:hidden">
+
+<a href="../index.html"><i class="fa-solid fa-house"></i></a>
+<a href="./shop.html"><i class="fa-solid fa-bag-shopping"></i></a>
+
+<a href="./cart.html" class="relative">
+<i class="fa-solid fa-cart-shopping"></i>
+<span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">0</span>
+</a>
+
+<a href="./wishlist.html" class="text-red-500">
+<i class="fa-regular fa-heart"></i>
+</a>
+
+<a href="./profile.html"><i class="fa-solid fa-user"></i></a>
+
+</div>
+
+<script src="../assets/js/wishlist.js"></script>
+
+<!-- RENDER SCRIPT -->
+<script>
+function renderWishlist() {
+
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+const grid = document.getElementById("wishlistGrid");
+const empty = document.getElementById("emptyState");
+
+grid.innerHTML = "";
+
+if (wishlist.length === 0) {
+grid.classList.add("hidden");
+empty.classList.remove("hidden");
+return;
+}
+
+grid.classList.remove("hidden");
+empty.classList.add("hidden");
+
+wishlist.forEach((item, index) => {
+
+const card = document.createElement("div");
+
+card.className = "card bg-white rounded-2xl overflow-hidden shadow-sm";
+
+card.innerHTML = `
+<div class="relative">
+
+<img src="${item.image}" class="w-full h-40 object-cover">
+
+<button onclick="removeItem(${index})"
+class="absolute top-2 right-2 bg-white w-8 h-8 rounded-full shadow hover:bg-red-500 hover:text-white transition">
+<i class="fa-solid fa-trash"></i>
+</button>
+
+</div>
+
+<div class="p-4">
+
+<h3 class="font-semibold text-sm">${item.name}</h3>
+
+<p class="text-gray-500 text-sm mt-1">₹${item.price}</p>
+
+</div>
+`;
+
+grid.appendChild(card);
+
+});
+
+}
+
+function removeItem(index) {
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+wishlist.splice(index, 1);
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
+renderWishlist();
+}
+
+renderWishlist();
+</script>
+
+</body>
 </html>

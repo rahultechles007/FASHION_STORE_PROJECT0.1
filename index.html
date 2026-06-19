@@ -6,112 +6,86 @@
     <title>Velora Fashion Store</title>
 
     <link rel="stylesheet" href="./src/output.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
 
-<body class="bg-beige text-premium pb-20 md:pb-0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<style>
+    /* dark mode  */
+
+    body.dark {
+  background: #0f0f10 !important;
+  color: #ffffff;
+}
+
+body.dark .bg-white {
+  background-color: #1b1b1d !important;
+  color: #ffffff;
+}
+
+body.dark input {
+  background-color: #111;
+  color: #fff;
+  border-color: #333;
+}
+
+body.dark .text-gray-500,
+body.dark .text-gray-700,
+body.dark .text-gray-400 {
+  color: #cfcfcf !important;
+}
+
+body.dark .border-gray-200,
+body.dark .border-gray-300 {
+  border-color: #333 !important;
+}
+
+body.dark .shadow-xl {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+</style>
+<body id="pageBody" class="bg-beige text-premium pb-20 md:pb-0">
 
     <!-- HEADER -->
 <!-- ===========================
 HEADER START
 =========================== -->
-
 <header class="bg-white sticky top-0 z-50 shadow-sm">
-
-    <!-- TOP HEADER -->
-    <div class="max-w-7xl mx-auto px-4 lg:px-6">
-
-        <div class="flex items-center justify-between py-4">
-
-            <!-- LOGO -->
-            <a href="index.html"
-                class="flex items-center gap-3">
-
-                <div class="w-12 h-12 rounded-full bg-[#C8A96B]/20 flex items-center justify-center">
-
-                    <i class="fa-solid fa-gem text-[#C8A96B] text-xl"></i>
-
-                </div>
-
-                <h1 class="text-3xl font-bold tracking-widest">
-
-                    VE<span class="text-[#C8A96B]">L</span>ORA
-
-                </h1>
-
-            </a>
-
-            <!-- RIGHT SECTION -->
-            <div class="flex items-center gap-5">
-
-                <div class="hidden md:flex items-center gap-2">
-
-                    <i class="fa-solid fa-user text-[#C8A96B]"></i>
-
-                    <span id="headerUsername">
-
-                        Guest
-
-                    </span>
-
-                </div>
-
-                <a href="./pages/login.html"
-                    class="hidden md:block hover:text-[#C8A96B]">
-
-                    Login
-
-                </a>
-
-                <!-- WISHLIST -->
-                <a href="./pages/wishlist.html"
-                    class="relative">
-
-                    <i class="fa-regular fa-heart text-xl"></i>
-
-                    <span id="wishlistCount"
-                        class="absolute -top-2 -right-2 bg-[#C8A96B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-
-                        0
-
-                    </span>
-
-                </a>
-
-                <!-- CART -->
-                <a href="./pages/cart.html"
-                    class="relative">
-
-                    <i class="fa-solid fa-cart-shopping text-xl"></i>
-
-                    <span id="cartCount"
-                        class="absolute -top-2 -right-2 bg-[#C8A96B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-
-                        0
-
-                    </span>
-
-                </a>
-
-                <!-- MOBILE MENU -->
-                <button
-                    id="openMenu"
-                    class="lg:hidden">
-                    <i class="fa-solid fa-bars text-xl"></i>
-
-                <!-- Overlay -->
-<div id="mobileOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
-
-                </button>
-
-            </div>
-
+  <!-- TOP HEADER -->
+  <div class="max-w-7xl mx-auto px-4 lg:px-6">
+    <div class="flex items-center justify-between py-4">
+      <!-- LOGO -->
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-[#C8A96B]/20 flex items-center justify-center">
+          <i class="fa-solid fa-gem text-[#C8A96B] text-xl"></i>
         </div>
-
+        <h1 class="text-3xl font-bold tracking-widest">
+          VE<span class="text-[#C8A96B]">L</span>ORA
+        </h1>
+      </a>
+      <!-- RIGHT SECTION -->
+      <div class="flex items-center gap-5">
+        <div class="hidden md:flex items-center gap-2">
+          <i class="fa-solid fa-user text-[#C8A96B]"></i>
+          <span id="headerUsername">Guest</span>
+        </div>
+        <a href="./pages/login.html" class="hidden md:block hover:text-[#C8A96B]">Login</a>
+        <!-- WISHLIST -->
+        <a href="./pages/wishlist.html" class="relative">
+          <i class="fa-regular fa-heart text-xl"></i>
+          <span id="wishlistCount" class="absolute -top-2 -right-2 bg-[#C8A96B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        </a>
+        <!-- CART -->
+        <a href="./pages/cart.html" class="relative">
+          <i class="fa-solid fa-cart-shopping text-xl"></i>
+          <span id="cartCount" class="absolute -top-2 -right-2 bg-[#C8A96B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        </a>
+        <!-- MOBILE MENU -->
+        <button id="openMenu" class="lg:hidden"><i class="fa-solid fa-bars text-xl"></i></button>
+      </div>
     </div>
-
-    <!-- NAVBAR -->
-    <div class="hidden lg:block border-t">
+  </div>
+  <!-- NAVBAR -->
+  <div class="hidden lg:block border-t">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex items-center justify-between py-4">
         <nav class="flex items-center gap-8 font-medium">
@@ -130,8 +104,8 @@ HEADER START
       </div>
     </div>
   </div>
-
 </header>
+
 
 <!-- ===========================
 HEADER END
@@ -141,7 +115,10 @@ HEADER END
     
 
     <!-- MAIN -->
-  <section class="relative h-[60vh] sm:h-[65vh] md:h-[70vh] lg:h-[75vh] overflow-hidden">
+     <div class="w-full bg-black/0 flex justify-center">
+
+    <div class="w-full rounded max-w-7xl">
+  <section class="relative mt-3 rounded h-[60vh] sm:h-[65vh] md:h-[70vh] lg:h-[75vh] overflow-hidden">
 
     <!-- Slider Container -->
     <div id="slider" class="relative h-full">
@@ -365,6 +342,8 @@ HEADER END
     </div>
 
 </section>
+</div>
+</div>
 
     <!-- category section  start -->
      <section class="py-16 lg:py-24">
@@ -1927,29 +1906,28 @@ class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition
         <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">0</span>
     </a>
 
-    <a href="./wishlist.html" class="text-center text-sm">
+    <a href="./pages/wishlist.html" class="text-center text-sm">
         <i class="fa-regular fa-heart"></i>
     </a>
 
-    <a href="./profile.html" class="text-center text-sm">
+    <a href="./pages/profile.html" class="text-center text-sm">
         <i class="fa-solid fa-user"></i>
     </a>
 
 </nav>
-<style>
-    
-</style>
+
+
 
     <!-- JAVASCRIPT -->
 <script src="./assets/js/cart.js"></script>
 <script src="./assets/js/main.js"></script>
 <script src="../assets/js/logout.js"></script>
    
-<script>let users = JSON.parse(localStorage.getItem("users")) || [];
+<!-- <script>let users = JSON.parse(localStorage.getItem("users")) || [];
 
 users.push(user);
 
-localStorage.setItem("users", JSON.stringify(users));</script>
+localStorage.setItem("users", JSON.stringify(users));</script> -->
 
 <!-- mobile overlay -->
  <script>

@@ -9,221 +9,228 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <style>
+.animate-fade{
+    animation: fadeInUp .6s ease;
+}
 
 @keyframes fadeInUp{
-
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
+    from{opacity:0; transform:translateY(25px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
-.animate-fade{
-    animation:fadeInUp .7s ease;
+.stat-card{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+    transition:.3s;
+    text-align:center;
 }
 
+.stat-card:hover{
+    transform:translateY(-5px);
+}
+
+.stat-card p{
+    color:gray;
+    font-size:14px;
+}
+
+.stat-card h2{
+    font-size:28px;
+    font-weight:bold;
+    margin-top:8px;
+    color:#1E1A17;
+}
+
+.input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    outline:none;
+}
+
+.btn-primary{
+    flex:1;
+    background:#1E1A17;
+    color:white;
+    padding:12px;
+    border-radius:12px;
+}
+
+.btn-secondary{
+    flex:1;
+    border:1px solid #ddd;
+    padding:12px;
+    border-radius:12px;
+}
 </style>
 
-<body class="bg-[#F5F2EB]">
 
-   <div class="max-w-6xl mx-auto px-4 md:px-6 py-10">
+<body id="pageBody" class="bg-beige text-premium min-h-screen flex items-center justify-center px-4">
+
+<!-- MAIN WRAPPER -->
+<div class="w-full max-w-5xl animate-fade">
 
     <!-- PROFILE CARD -->
-    <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 md:p-8 mb-8">
+    <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-100">
 
         <div class="flex flex-col md:flex-row items-center gap-8">
 
             <!-- PROFILE IMAGE -->
             <div class="relative">
-
-                <img
-                    id="profileImage"
+                <img id="profileImage"
                     src="https://ui-avatars.com/api/?name=User&background=C8A96B&color=fff&size=250"
-                    class="w-36 h-36 rounded-full object-cover border-4 border-[#C8A96B] shadow-lg">
+                    class="w-36 h-36 rounded-full border-4 border-[#C8A96B] shadow-lg object-cover">
 
-                <label
-                    for="uploadPhoto"
-                    class="absolute bottom-2 right-2 bg-[#C8A96B] text-white w-10 h-10 rounded-full flex items-center justify-center cursor-pointer shadow-md hover:scale-110 transition">
+                <input type="file" id="uploadPhoto" class="hidden" accept="image/*">
 
+                <label for="uploadPhoto"
+                    class="absolute bottom-2 right-2 bg-[#C8A96B] text-white w-10 h-10 rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition">
                     <i class="fa-solid fa-camera"></i>
-
                 </label>
-
-                <input
-                    type="file"
-                    id="uploadPhoto"
-                    accept="image/*"
-                    class="hidden">
-
             </div>
 
-            <!-- USER DETAILS -->
+            <!-- INFO -->
             <div class="flex-1 text-center md:text-left">
 
-                <h1
-                    id="userName"
-                    class="text-3xl md:text-4xl font-bold text-[#1E1A17]">
-                    Welcome Back
-                </h1>
+                <h1 id="userName" class="text-3xl font-bold">Welcome Back</h1>
+                <p id="userEmail" class="text-gray-500 mt-2">guest@velora.com</p>
 
-                <p
-                    id="userEmail"
-                    class="text-gray-500 mt-2 text-lg">
-                </p>
+                <div class="flex gap-3 mt-6 flex-wrap justify-center md:justify-start">
 
-                <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-6">
-
-                    <button
-                        class="bg-[#1E1A17] text-white px-6 py-3 rounded-xl hover:bg-[#C8A96B] hover:text-black transition duration-300">
-
-                        <i class="fa-solid fa-pen-to-square mr-2"></i>
+                    <button onclick="openEditModal()"
+                        class="bg-[#1E1A17] text-white px-6 py-3 rounded-xl hover:bg-[#C8A96B] hover:text-black transition">
                         Edit Profile
-
                     </button>
 
-                    <button
-                        onclick="logout()"
+                    <button onclick="logout()"
                         class="bg-red-500 text-white px-6 py-3 rounded-xl hover:bg-red-600 transition">
-
-                        <i class="fa-solid fa-right-from-bracket mr-2"></i>
                         Logout
-
                     </button>
 
                 </div>
-
             </div>
 
         </div>
-
     </div>
 
     <!-- STATS -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
 
-        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl hover:-translate-y-1 transition">
-
-            <div class="flex items-center justify-between">
-
-                <div>
-                    <p class="text-gray-500 text-sm">
-                        Orders
-                    </p>
-
-                    <h2 id="totalOrders"
-                        class="text-3xl font-bold mt-2">
-                        0
-                    </h2>
-                </div>
-
-                <i class="fa-solid fa-box text-3xl text-[#C8A96B]"></i>
-
-            </div>
-
+        <div class="stat-card">
+            <p>Orders</p>
+            <h2 id="totalOrders">0</h2>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl hover:-translate-y-1 transition">
-
-            <div class="flex items-center justify-between">
-
-                <div>
-                    <p class="text-gray-500 text-sm">
-                        Wishlist
-                    </p>
-
-                    <h2 id="wishlistTotal"
-                        class="text-3xl font-bold mt-2">
-                        0
-                    </h2>
-                </div>
-
-                <i class="fa-solid fa-heart text-3xl text-red-500"></i>
-
-            </div>
-
+        <div class="stat-card">
+            <p>Wishlist</p>
+            <h2 id="wishlistTotal">0</h2>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl hover:-translate-y-1 transition">
-
-            <div class="flex items-center justify-between">
-
-                <div>
-                    <p class="text-gray-500 text-sm">
-                        Total Spent
-                    </p>
-
-                    <h2 id="totalSpent"
-                        class="text-3xl font-bold mt-2">
-                        ₹0
-                    </h2>
-                </div>
-
-                <i class="fa-solid fa-indian-rupee-sign text-3xl text-green-600"></i>
-
-            </div>
-
+        <div class="stat-card">
+            <p>Total Spent</p>
+            <h2 id="totalSpent">₹0</h2>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-xl hover:-translate-y-1 transition">
-
-            <div class="flex items-center justify-between">
-
-                <div>
-                    <p class="text-gray-500 text-sm">
-                        Member Since
-                    </p>
-
-                    <h2 class="text-2xl font-bold mt-2">
-                        2025
-                    </h2>
-                </div>
-
-                <i class="fa-solid fa-crown text-3xl text-yellow-500"></i>
-
-            </div>
-
+        <div class="stat-card">
+            <p>Member</p>
+            <h2>2026</h2>
         </div>
 
     </div>
-
-    <!-- RECENT ORDERS -->
-    <div class="bg-white rounded-3xl shadow-xl p-6 md:p-8">
-
-        <div class="flex justify-between items-center mb-6">
-
-            <h2 class="text-2xl font-bold flex items-center gap-2">
-
-                <i class="fa-solid fa-clock-rotate-left text-[#C8A96B]"></i>
-                Recent Orders
-
-            </h2>
-
-            <a
-                href="./orders.html"
-                class="text-[#C8A96B] font-semibold hover:underline">
-
-                View All
-
-            </a>
-
-        </div>
-
-        <div
-            id="myOrders"
-            class="space-y-4">
-        </div>
-
-    </div>
-
 </div>
 
-<script src="../assets/js/logout.js"></script>
+<!-- EDIT MODAL -->
+<div id="editModal"
+    class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
 
+    <div class="bg-white w-full max-w-md rounded-3xl p-6 animate-fade">
+
+        <h2 class="text-xl font-bold mb-4">Edit Profile</h2>
+
+        <input id="name" placeholder="Name" class="input">
+        <input id="email" placeholder="Email" class="input mt-3">
+        <input id="phone" placeholder="Phone" class="input mt-3">
+        <input id="address" placeholder="Address" class="input mt-3">
+
+        <div class="flex gap-3 mt-5">
+            <button onclick="saveProfile()" class="btn-primary">Save</button>
+            <button onclick="closeModal()" class="btn-secondary">Cancel</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+// OPEN MODAL
+function openEditModal(){
+    document.getElementById("editModal").classList.remove("hidden");
+
+    // load saved data
+    document.getElementById("name").value = localStorage.getItem("name") || "";
+    document.getElementById("email").value = localStorage.getItem("email") || "";
+    document.getElementById("phone").value = localStorage.getItem("phone") || "";
+    document.getElementById("address").value = localStorage.getItem("address") || "";
+}
+
+// CLOSE MODAL
+function closeModal(){
+    document.getElementById("editModal").classList.add("hidden");
+}
+
+// SAVE PROFILE
+function saveProfile(){
+    localStorage.setItem("name", document.getElementById("name").value);
+    localStorage.setItem("email", document.getElementById("email").value);
+    localStorage.setItem("phone", document.getElementById("phone").value);
+    localStorage.setItem("address", document.getElementById("address").value);
+
+    document.getElementById("userName").innerText =
+        document.getElementById("name").value || "User";
+
+    document.getElementById("userEmail").innerText =
+        document.getElementById("email").value;
+
+    closeModal();
+    toast("Profile Saved ✅");
+}
+
+// LOAD PROFILE ON START
+window.onload = function(){
+    document.getElementById("userName").innerText =
+        localStorage.getItem("name") || "Welcome Back";
+
+    document.getElementById("userEmail").innerText =
+        localStorage.getItem("email") || "guest@velora.com";
+};
+
+// IMAGE UPLOAD
+document.getElementById("uploadPhoto").addEventListener("change", function(e){
+    const file = e.target.files[0];
+    if(file){
+        const reader = new FileReader();
+        reader.onload = function(){
+            document.getElementById("profileImage").src = reader.result;
+            localStorage.setItem("profileImage", reader.result);
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+// TOAST MESSAGE
+function toast(msg){
+    const div = document.createElement("div");
+    div.innerText = msg;
+    div.className = "fixed bottom-5 right-5 bg-black text-white px-4 py-2 rounded-lg animate-fade";
+    document.body.appendChild(div);
+
+    setTimeout(()=>div.remove(), 2000);
+}
+</script>
+
+<script src="/assets/js/logout.js"></script>
+   
 </body>
 </html>
