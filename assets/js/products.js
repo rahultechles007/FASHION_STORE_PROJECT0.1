@@ -1,11 +1,11 @@
 // GET ID FROM URL
-const params = new URLSearchParams(window.location.search);
-const id = Number(params.get("id"));
+const product =
+JSON.parse(
+localStorage.getItem("viewProduct")
+);
 
-// LOAD PRODUCTS FROM ADMIN SYSTEM
-let products = JSON.parse(localStorage.getItem("products")) || [];
 
-let product = products.find(p => p.id === id);
+
 
 const container = document.getElementById("productDetails");
 
