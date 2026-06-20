@@ -7,7 +7,7 @@ function addToCart(
     name,
     price,
     image,
-    category = "Fashion",
+    category,
     rating = 4.5,
     description = ""
 ) {
@@ -20,7 +20,7 @@ function addToCart(
 
     if(existing){
 
-        existing.quantity++;
+        (existing.quantity || 1) + 1;
 
     }else{
 
@@ -60,10 +60,11 @@ function updateCartCount() {
     JSON.parse(localStorage.getItem("cart")) || [];
 
     let count =
-    cart.reduce(
-        (total,item)=>total + item.quantity,
-        0
-    );
+cart.reduce(
+(total,item)=>
+total + (item.quantity || 1),
+0
+);
 
     document
     .querySelectorAll("#cartCount")
@@ -112,8 +113,13 @@ function loadCart() {
 
     cart.forEach(item => {
 
-        total += item.price * item.quantity;
+       const price =
+Number(item.price) || 0;
 
+const qty =
+Number(item.quantity) || 1;
+
+total += price * qty;
         cartItems.innerHTML += `
 
         <div class="bg-white rounded-2xl shadow p-4 flex gap-4">
@@ -168,7 +174,7 @@ class="w-32 h-32 object-cover rounded-xl border">
 
                     <span>
 
-                        ${item.quantity}
+                       ${item.quantity || 1}
 
                     </span>
 

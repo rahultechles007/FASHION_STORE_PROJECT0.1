@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Product Details | Velora</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet" href="../src/output.css">
+
+</head>
+
+<body class="bg-[#F5F2EB] text-[#1E1A17]">
+
+<!-- HEADER -->
+
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+
+    <div class="max-w-7xl mx-auto px-5">
+
+        <div class="flex items-center justify-between h-20">
+
+            <a href="../index.html"
+            class="text-3xl font-bold">
+
+                Velora
+
+            </a>
+
+            <nav class="hidden md:flex gap-8">
+
+                <a href="../index.html"
+                class="hover:text-[#C8A96B] transition">
+
+                    Home
+
+                </a>
+
+                <a href="shop.html"
+                class="hover:text-[#C8A96B] transition">
+
+                    Shop
+
+                </a>
+
+                <a href="wishlist.html"
+                class="hover:text-[#C8A96B] transition">
+
+                    Wishlist
+
+                </a>
+
+                <a href="cart.html"
+                class="hover:text-[#C8A96B] transition">
+
+                    Cart
+
+                </a>
+
+            </nav>
+
+            <div class="flex items-center gap-5">
+
+                <a href="wishlist.html">
+
+                    <i class="fa-regular fa-heart text-xl"></i>
+
+                </a>
+
+                <a href="cart.html"
+                class="relative">
+
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+
+                    <span
+                    id="cartCount"
+                    class="absolute -top-2 -right-2 bg-[#C8A96B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+
+                        0
+
+                    </span>
+
+                </a>
+
+                <button
+                id="menuBtn"
+                class="md:hidden">
+
+                    <i class="fa-solid fa-bars text-xl"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MOBILE MENU -->
+
+    <div
+    id="mobileMenu"
+    class="hidden md:hidden bg-white border-t">
+
+        <a href="../index.html"
+        class="block p-4 border-b">
+
+            Home
+
+        </a>
+
+        <a href="shop.html"
+        class="block p-4 border-b">
+
+            Shop
+
+        </a>
+
+        <a href="wishlist.html"
+        class="block p-4 border-b">
+
+            Wishlist
+
+        </a>
+
+        <a href="cart.html"
+        class="block p-4">
+
+            Cart
+
+        </a>
+
+    </div>
+
+</header>
+
+<!-- PRODUCT DETAILS -->
+
+<section class="py-10">
+
+    <div
+    id="productDetails"
+    class="max-w-7xl mx-auto px-5">
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="bg-[#1E1A17] text-white mt-20">
+
+    <div class="max-w-7xl mx-auto px-5 py-14">
+
+        <div class="grid md:grid-cols-4 gap-10">
+
+            <div>
+
+                <h3 class="text-3xl font-bold">
+
+                    Velora
+
+                </h3>
+
+                <p class="text-gray-400 mt-4">
+
+                    Luxury fashion and lifestyle shopping experience.
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <h4 class="font-semibold mb-4">
+
+                    Shop
+
+                </h4>
+
+                <ul class="space-y-2 text-gray-400">
+
+                    <li><a href="shop.html">Women</a></li>
+                    <li><a href="shop.html">Men</a></li>
+                    <li><a href="shop.html">Accessories</a></li>
+
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4 class="font-semibold mb-4">
+
+                    Support
+
+                </h4>
+
+                <ul class="space-y-2 text-gray-400">
+
+                    <li>FAQs</li>
+                    <li>Returns</li>
+                    <li>Shipping Policy</li>
+
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4 class="font-semibold mb-4">
+
+                    Follow Us
+
+                </h4>
+
+                <div class="flex gap-4 text-xl">
+
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-x-twitter"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="border-gray-700 my-8">
+
+        <p class="text-center text-gray-400">
+
+            © 2026 Velora. All Rights Reserved.
+
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- MOBILE BOTTOM NAV -->
+
+<nav
+class="fixed bottom-0 left-0 right-0 bg-white border-t md:hidden z-50">
+
+    <div class="grid grid-cols-4 py-3 text-center">
+
+        <a href="../index.html">
+
+            <i class="fa-solid fa-house"></i>
+
+            <p class="text-xs mt-1">
+                Home
+            </p>
+
+        </a>
+
+        <a href="shop.html">
+
+            <i class="fa-solid fa-store"></i>
+
+            <p class="text-xs mt-1">
+                Shop
+            </p>
+
+        </a>
+
+        <a href="wishlist.html">
+
+            <i class="fa-regular fa-heart"></i>
+
+            <p class="text-xs mt-1">
+                Wishlist
+            </p>
+
+        </a>
+
+        <a href="cart.html">
+
+            <i class="fa-solid fa-bag-shopping"></i>
+
+            <p class="text-xs mt-1">
+                Cart
+            </p>
+
+        </a>
+
+    </div>
+
+</nav>
+
+<!-- PRODUCT SCRIPT -->
+
+<script>
+
+const product =
+JSON.parse(
+localStorage.getItem("indexProduct")
+);
+
+if(product){
+
+document.getElementById(
+"productDetails"
+).innerHTML = `
+
+<div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+
+    <div class="grid lg:grid-cols-2 gap-10 p-6 lg:p-10">
+
+        <div>
+
+            <div class="aspect-[4/5] overflow-hidden rounded-3xl bg-gray-100">
+
+                <img
+                src="${product.image}"
+                alt="${product.name}"
+                class="w-full h-full object-cover hover:scale-105 transition duration-700">
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <p class="uppercase tracking-widest text-gray-500">
+
+                ${product.category}
+
+            </p>
+
+            <h1 class="text-4xl lg:text-5xl font-bold mt-3">
+
+                ${product.name}
+
+            </h1>
+
+            <div class="flex items-center gap-2 mt-3">
+
+                <span class="text-[#C8A96B] text-lg">
+
+                    ★★★★★
+
+                </span>
+
+                <span>
+
+                    ${product.rating}
+
+                </span>
+
+            </div>
+
+            <p class="text-4xl font-bold text-[#C8A96B] mt-6">
+
+                ₹${product.price}
+
+            </p>
+
+            <p class="text-gray-600 leading-8 mt-6">
+
+                ${product.description}
+
+            </p>
+
+            <div class="flex flex-wrap gap-4 mt-8">
+
+                <button
+                onclick="addToCart()"
+                class="bg-[#1E1A17] text-white px-8 py-4 rounded-xl hover:scale-105 transition">
+
+                    <i class="fa-solid fa-bag-shopping mr-2"></i>
+
+                    Add To Cart
+
+                </button>
+
+                <button
+                onclick="addToWishlist()"
+                class="border border-[#C8A96B] text-[#C8A96B] px-8 py-4 rounded-xl hover:bg-[#C8A96B] hover:text-white transition">
+
+                    <i class="fa-regular fa-heart mr-2"></i>
+
+                    Wishlist
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+`;
+
+}
+
+function addToCart(){
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+cart.push(product);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+updateCartCount();
+
+alert("Added To Cart");
+
+}
+
+function addToWishlist(){
+
+let wishlist =
+JSON.parse(
+localStorage.getItem("wishlist")
+) || [];
+
+wishlist.push(product);
+
+localStorage.setItem(
+"wishlist",
+JSON.stringify(wishlist)
+);
+
+alert("Added To Wishlist");
+
+}
+
+function updateCartCount(){
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+document.getElementById(
+"cartCount"
+).innerText = cart.length;
+
+}
+
+updateCartCount();
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+const mobileMenu =
+document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click",()=>{
+
+mobileMenu.classList.toggle("hidden");
+
+});
+
+</script>
+
+</body>
+</html>

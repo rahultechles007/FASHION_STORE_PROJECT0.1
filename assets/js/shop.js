@@ -29,8 +29,11 @@ function showToast(message){
     document.body.appendChild(toast);
 
     setTimeout(()=>{
+
         toast.remove();
+
     },2500);
+
 }
 
 // =====================
@@ -39,14 +42,20 @@ function showToast(message){
 
 function displayProducts(productList){
 
+    if(!productGrid) return;
+
     productGrid.innerHTML = "";
 
-    if(productList.length===0){
+    if(productList.length === 0){
 
         productGrid.innerHTML = `
+
         <div class="col-span-full text-center py-10">
+
             No Products Available
+
         </div>
+
         `;
 
         return;
@@ -70,11 +79,15 @@ function displayProducts(productList){
     <div class="p-4 flex flex-col flex-1">
 
         <p class="text-xs uppercase text-gray-400">
+
             ${product.category}
+
         </p>
 
         <h3 class="font-bold text-lg mt-2">
+
             ${product.name}
+
         </h3>
 
         <div class="flex items-center gap-1 mt-2">
@@ -82,7 +95,9 @@ function displayProducts(productList){
             <i class="fa-solid fa-star text-[#C8A96B]"></i>
 
             <span>
+
                 ${product.rating || 4.5}
+
             </span>
 
         </div>
@@ -107,19 +122,15 @@ function displayProducts(productList){
 
             <button
             onclick="viewProduct('${product.id}')"
-            class="flex-1 border border-[#C8A96B] text-[#C8A96B] py-2 rounded-xl">
+            class="flex-1 border border-[#C8A96B] text-[#C8A96B] py-2 rounded-xl hover:bg-[#C8A96B] hover:text-white transition">
 
                 View
 
             </button>
 
             <button
-            onclick="addToCart(
-'${product.name}',
-${product.price},
-'${product.image}'
-)"
-            class="flex-1 bg-[#1E1A17] text-white py-2 rounded-xl">
+            onclick="addToCart('${product.id}')"
+            class="flex-1 bg-[#1E1A17] text-white py-2 rounded-xl hover:bg-black transition">
 
                 Add Cart
 
@@ -132,11 +143,13 @@ ${product.price},
 </div>
 
 `;
+
     });
+
 }
 
 // =====================
-// CART
+// ADD TO CART
 // =====================
 
 function addToCart(productId){
@@ -146,35 +159,40 @@ function addToCart(productId){
 
     let product =
     products.find(
-        p=>String(p.id)===String(productId)
+        p => String(p.id) === String(productId)
     );
 
     if(!product){
+
+        console.log("Product Not Found");
         return;
     }
 
     let existing =
     cart.find(
-        item=>String(item.id)===String(product.id)
+        item => String(item.id) === String(product.id)
     );
 
     if(existing){
 
-        existing.quantity++;
+        existing.quantity =
+        (existing.quantity || 1) + 1;
 
     }else{
 
         cart.push({
 
-            id:product.id,
-            name:product.name,
-            image:product.image,
-            category:product.category,
-            description:product.description,
-            rating:product.rating || 4.5,
-            price:Number(product.price),
-            quantity:1
+            id: product.id,
+            name: product.name,
+            image: product.image,
+            category: product.category,
+            description: product.description,
+            rating: product.rating || 4.5,
+            price: Number(product.price),
+            quantity: 1
+
         });
+
     }
 
     localStorage.setItem(
@@ -185,9 +203,9 @@ function addToCart(productId){
     updateCartCount();
 
     showToast(
-        product.name +
-        " added to cart"
+        product.name + " added to cart"
     );
+
 }
 
 // =====================
@@ -201,16 +219,25 @@ function updateCartCount(){
 
     let count =
     cart.reduce(
-        (sum,item)=>sum+item.quantity,
+
+        (sum,item)=>
+
+        sum + (item.quantity || 1),
+
         0
+
     );
 
     document
-    .querySelectorAll(".cartCount")
+    .querySelectorAll(
+        ".cartCount,#cartCount"
+    )
     .forEach(el=>{
 
         el.innerText = count;
+
     });
+
 }
 
 // =====================
@@ -234,6 +261,7 @@ function viewProduct(id){
         viewed.unshift(id);
 
         viewed = viewed.slice(0,6);
+
     }
 
     localStorage.setItem(
@@ -242,7 +270,8 @@ function viewProduct(id){
     );
 
     window.location.href =
-    `product.html?id=${id}`;
+    "product.html";
+
 }
 
 // =====================
@@ -259,19 +288,24 @@ function applyFilters(){
     products.filter(product=>{
 
         const categoryMatch =
-        activeCategory==="All" ||
-        product.category===activeCategory;
+
+        activeCategory === "All" ||
+
+        product.category === activeCategory;
 
         const searchMatch =
+
         product.name
         .toLowerCase()
         .includes(search);
 
         return categoryMatch &&
         searchMatch;
+
     });
 
     displayProducts(filtered);
+
 }
 
 searchInput?.addEventListener(
@@ -287,17 +321,21 @@ filterButtons.forEach(btn=>{
         btn.innerText.trim();
 
         applyFilters();
+
     });
+
 });
 
 // =====================
-// FLASH SALE COUNTDOWN
+// FLASH SALE
 // =====================
 
 function startCountdown(){
 
     const countdown =
-    document.getElementById("saleCountdown");
+    document.getElementById(
+        "saleCountdown"
+    );
 
     if(!countdown) return;
 
@@ -305,7 +343,7 @@ function startCountdown(){
     new Date();
 
     end.setHours(
-        end.getHours()+12
+        end.getHours() + 12
     );
 
     setInterval(()=>{
@@ -314,10 +352,12 @@ function startCountdown(){
         new Date().getTime();
 
         let distance =
-        end.getTime()-now;
+        end.getTime() - now;
 
         let hours =
-        Math.floor(distance/(1000*60*60));
+        Math.floor(
+            distance/(1000*60*60)
+        );
 
         let mins =
         Math.floor(
@@ -327,13 +367,15 @@ function startCountdown(){
 
         let secs =
         Math.floor(
-            (distance%(1000*60))/1000
+            (distance%(1000*60))
+            /1000
         );
 
         countdown.innerText =
         `${hours}h ${mins}m ${secs}s`;
 
     },1000);
+
 }
 
 // =====================
@@ -341,7 +383,6 @@ function startCountdown(){
 // =====================
 
 displayProducts(products);
-
 
 updateCartCount();
 

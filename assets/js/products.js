@@ -1,8 +1,37 @@
 // GET ID FROM URL
-const product =
-JSON.parse(
-localStorage.getItem("viewProduct")
+
+const params = new URLSearchParams(
+    window.location.search
 );
+
+const id = Number(
+    params.get("id")
+);
+
+let product;
+
+// Shop Products
+if(id){
+
+    const products =
+    JSON.parse(
+        localStorage.getItem("products")
+    ) || [];
+
+    product =
+    products.find(
+        p => p.id === id
+    );
+}
+
+// Homepage Products
+if(!product){
+
+    product =
+    JSON.parse(
+        localStorage.getItem("viewProduct")
+    );
+}
 
 
 
