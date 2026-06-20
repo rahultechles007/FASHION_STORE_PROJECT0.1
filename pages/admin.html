@@ -197,7 +197,7 @@ class="border p-3 rounded-xl">
     <input
         id="pImage"
         type="file"
-        placeholder="product1.jpg"
+        placeholder="image "
         class="border p-3 rounded-xl w-full">
 
 <input
@@ -467,6 +467,10 @@ function addProduct() {
             "products",
             JSON.stringify(products)
         );
+        document.getElementById(
+"totalProducts"
+).innerText =
+products.length;
 
         loadProducts();
         loadStats();
@@ -522,8 +526,9 @@ function loadProducts(){
             <div class="flex items-center gap-4">
 
                 <img
-                src="${product.image}"
-                class="w-20 h-20 rounded-xl object-cover">
+src="${product.image}"
+onerror="this.src='/assets/images/no-image.jpg'"
+class="w-full h-40 object-cover rounded-lg">
 
                 <div>
 
@@ -665,6 +670,6 @@ loadUsers();
 loadChart();
 
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

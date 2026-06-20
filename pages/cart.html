@@ -4,78 +4,359 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cart | Velora</title>
+
+<title>Shopping Cart | Velora</title>
 
 <link rel="stylesheet" href="../src/output.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
-<body class="bg-[#F5F2EB]">
+<body class="bg-[#F5F2EB] text-[#1E1A17]">
 
-<div class="max-w-6xl mx-auto px-4 py-8">
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
 
-    <h1 class="text-3xl font-bold text-center mb-10">Your Shopping Cart</h1>
+<header class="bg-white shadow-sm sticky top-0 z-50">
 
-    <div class="grid lg:grid-cols-3 gap-8">
+<div class="max-w-7xl mx-auto px-5">
 
-        <!-- CART ITEMS -->
-        <div class="lg:col-span-2 space-y-4">
-            <div id="cartItems" class="space-y-4"></div>
-        </div>
+<div class="flex items-center justify-between h-20">
 
-        <!-- SUMMARY -->
-        <div class="bg-white rounded-2xl shadow p-6 h-fit">
+<a href="../index.html"
+class="text-3xl font-bold tracking-wide">
+Velora
+</a>
 
-            <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+<nav class="hidden md:flex gap-8 font-medium">
 
-            <div class="flex justify-between text-gray-600 mb-2">
-                <span>Subtotal</span>
-                <span>₹<span id="totalPrice">0</span></span>
-            </div>
+<a href="../index.html"
+class="hover:text-[#C8A96B] transition">
+Home
+</a>
 
-            <div class="flex justify-between text-gray-600 mb-2">
-                <span>Shipping</span>
-                <span>Free</span>
-            </div>
+<a href="./shop.html"
+class="hover:text-[#C8A96B] transition">
+Shop
+</a>
 
-            <hr class="my-4">
+<a href="./wishlist.html"
+class="hover:text-[#C8A96B] transition">
+Wishlist
+</a>
 
-            <div class="flex justify-between text-lg font-bold">
-                <span>Total</span>
-                <span>₹<span id="totalPrice2">0</span></span>
-            </div>
+<a href="./contact.html"
+class="hover:text-[#C8A96B] transition">
+Contact
+</a>
 
-            <a href="./checkout.html"
-               class="block mt-6 text-center bg-[#1E1A17] text-white py-3 rounded-xl hover:bg-[#cba75e] transition">
-                Proceed to Checkout
-            </a>
+</nav>
 
-        </div>
-    </div>
+<div class="flex items-center gap-5">
+
+<a href="./wishlist.html">
+<i class="fa-regular fa-heart text-xl"></i>
+</a>
+
+<a href="./cart.html" class="relative">
+
+<i class="fa-solid fa-cart-shopping text-xl"></i>
+
+<span id="cartCount"
+class="absolute -top-2 -right-2 bg-[#C8A96B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+
+0
+
+</span>
+
+</a>
+
 </div>
 
-<!-- MOBILE NAV -->
-<div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t flex justify-around py-2 md:hidden z-50">
-
-    <a href="../index.html"><i class="fa-solid fa-house"></i></a>
-    <a href="./shop.html"><i class="fa-solid fa-bag-shopping"></i></a>
-
-    <a href="./cart.html" class="relative">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span id="cartCount"
-              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
-            0
-        </span>
-    </a>
-
-    <a href="./wishlist.html"><i class="fa-regular fa-heart"></i></a>
-    <a href="./profile.html"><i class="fa-solid fa-user"></i></a>
+</div>
 
 </div>
+
+</header>
+
+<!-- ========================= -->
+<!-- HERO -->
+<!-- ========================= -->
+
+<section class="py-12 text-center">
+
+<h1 class="text-4xl md:text-5xl font-bold">
+Your Shopping Cart
+</h1>
+
+<p class="text-gray-500 mt-3">
+Review your selected fashion items
+</p>
+
+</section>
+
+<!-- ========================= -->
+<!-- CART SECTION -->
+<!-- ========================= -->
+
+<section class="pb-20">
+
+<div class="max-w-7xl mx-auto px-5">
+
+<div class="grid lg:grid-cols-3 gap-8">
+
+<!-- CART ITEMS -->
+
+<div class="lg:col-span-2">
+
+<div id="cartItems"
+class="space-y-6">
+
+</div>
+
+</div>
+
+<!-- SUMMARY -->
+
+<div>
+
+<div
+class="bg-white rounded-3xl shadow-lg p-8 sticky top-28 animate-pulse">
+
+<h2 class="text-2xl font-bold mb-6">
+Order Summary
+</h2>
+
+<div class="flex justify-between mb-4">
+
+<span class="text-gray-600">
+Subtotal
+</span>
+
+<span class="font-semibold">
+₹<span id="totalPrice">0</span>
+</span>
+
+</div>
+
+<div class="flex justify-between mb-4">
+
+<span class="text-gray-600">
+Shipping
+</span>
+
+<span class="text-green-600">
+Free
+</span>
+
+</div>
+
+<hr class="my-5">
+
+<div class="flex justify-between text-xl font-bold">
+
+<span>Total</span>
+
+<span class="text-[#C8A96B]">
+₹<span id="totalPrice2">0</span>
+</span>
+
+</div>
+
+<a href="./checkout.html"
+class="block mt-8 text-center bg-[#1E1A17] text-white py-4 rounded-xl hover:bg-[#C8A96B] transition duration-300">
+
+Proceed To Checkout
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer class="bg-[#1E1A17] text-white">
+
+<div class="max-w-7xl mx-auto px-5 py-14">
+
+<div class="grid md:grid-cols-4 gap-10">
+
+<div>
+
+<h3 class="text-3xl font-bold">
+Velora
+</h3>
+
+<p class="text-gray-400 mt-4">
+Luxury fashion and lifestyle shopping experience.
+</p>
+
+</div>
+
+<div>
+
+<h4 class="font-semibold mb-4">
+Shop
+</h4>
+
+<ul class="space-y-2 text-gray-400">
+
+<li>
+<a href="./shop.html">Women</a>
+</li>
+
+<li>
+<a href="./shop.html">Men</a>
+</li>
+
+<li>
+<a href="./shop.html">Accessories</a>
+</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h4 class="font-semibold mb-4">
+Support
+</h4>
+
+<ul class="space-y-2 text-gray-400">
+
+<li>FAQs</li>
+
+<li>Shipping Policy</li>
+
+<li>Returns</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h4 class="font-semibold mb-4">
+Follow Us
+</h4>
+
+<div class="flex gap-5 text-xl">
+
+<i class="fab fa-instagram"></i>
+
+<i class="fab fa-facebook"></i>
+
+<i class="fab fa-x-twitter"></i>
+
+<i class="fab fa-pinterest"></i>
+
+</div>
+
+</div>
+
+</div>
+
+<hr class="border-gray-700 my-8">
+
+<p class="text-center text-gray-400">
+
+© 2026 Velora. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<!-- ========================= -->
+<!-- MOBILE BOTTOM NAV -->
+<!-- ========================= -->
+
+<nav
+class="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg md:hidden z-50">
+
+<div class="grid grid-cols-5 py-3 text-center">
+
+<a href="../index.html">
+
+<i class="fa-solid fa-house"></i>
+
+<p class="text-xs mt-1">
+Home
+</p>
+
+</a>
+
+<a href="./shop.html">
+
+<i class="fa-solid fa-store"></i>
+
+<p class="text-xs mt-1">
+Shop
+</p>
+
+</a>
+
+<a href="./wishlist.html">
+
+<i class="fa-regular fa-heart"></i>
+
+<p class="text-xs mt-1">
+Wishlist
+</p>
+
+</a>
+
+<a href="./cart.html" class="relative">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<span id="cartCount"
+class="absolute top-0 right-6 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+
+0
+
+</span>
+
+<p class="text-xs mt-1">
+Cart
+</p>
+
+</a>
+
+<a href="./profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+<p class="text-xs mt-1">
+Profile
+</p>
+
+</a>
+
+</div>
+
+</nav>
+
+<!-- ========================= -->
+<!-- CART SCRIPT -->
+<!-- ========================= -->
 
 <script src="../assets/js/cart.js"></script>
 
-
-
 </body>
+
 </html>

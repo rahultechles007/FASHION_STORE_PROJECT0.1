@@ -22,26 +22,57 @@ document.getElementById("totalProducts").innerText = products.length;
 let revenue = 0;
 
 orders.forEach(order => {
-    revenue += order.total;
+
+    revenue += Number(order.total || 0);
+
 });
+
+document.getElementById(
+"totalRevenue"
+).innerText =
+"₹" + revenue.toLocaleString();
 
 document.getElementById("totalRevenue").innerText = revenue;
 
 //  CHART 
-const ctx = document.getElementById('salesChart');
+const chartCanvas =
+document.getElementById("salesChart");
 
-if (ctx) {
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-            datasets: [{
-                label: 'Sales',
-                data: [12000, 19000, 8000, 15000, 22000],
-                backgroundColor: '#C8A96B'
-            }]
-        }
-    });
+if(chartCanvas){
+
+new Chart(chartCanvas,{
+
+type:"bar",
+
+data:{
+
+labels:[
+"Jan",
+"Feb",
+"Mar",
+"Apr",
+"May"
+],
+
+datasets:[{
+
+label:"Sales",
+
+data:[
+12000,
+19000,
+8000,
+15000,
+22000
+],
+
+backgroundColor:"#C8A96B"
+
+}]
+}
+
+});
+
 }
 
 
@@ -51,7 +82,7 @@ function addProduct() {
     let name = document.getElementById("productName").value;
     let price = document.getElementById("productPrice").value;
     let image = document.getElementById("productImage").value;
-    let description = document.getElementById("pDescription").value.trim();
+    let description =document.getElementById("pDescription").value = product.description;
     let category = document.getElementById("productCategory").value;
 
     if (!name || !price || !imageFile || !description) {
@@ -85,7 +116,8 @@ function addProduct() {
             price: Number(price),
             image,
             description: description,
-            category
+            category,
+             rating:4.5
         });
 
         alert("Product Added");
